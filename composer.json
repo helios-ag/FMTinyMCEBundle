@@ -1,0 +1,40 @@
+{
+  "name": "helios-ag/fm-tinymce-bundle",
+  "description": "TinyMCE bundle, adds TinyMCE editor to your Symfony2 project",
+  "keywords": ["elfinder","file manager"],
+  "type": "symfony-bundle",
+  "homepage": "https://github.com/helios-ag/FMTinyMCEBundle",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Al Ganiev",
+      "email": "helios.ag@gmail.com"
+    },
+    {
+      "name": "Symfony Community",
+      "homepage": "https://github.com/helios-ag/FMElfinderBundle/contributors"
+    }
+  ],
+  "require": {
+    "php":                           ">=5.3.3",
+    "symfony/form":                  "~2.7",
+    "symfony/framework-bundle":      "~2.7",
+    "symfony/twig-bundle":           "~2.7"
+  },
+  "require-dev" : {
+    "symfony/form": "~2.7",
+    "phpunit/phpunit": "~5.0",
+    "symfony/yaml": "^2.0.5",
+    "twig/twig": "~1.12"
+  },
+  "suggest": {
+    "stfalcon/tinymce-bundle": "TinyMCE Bundle by Stfalcon",
+    "egeloen/ckeditor-bundle": "CKEditor Bundle by Egeloen",
+    "trsteel/ckeditor-bundle": "CKEditor Bundle by trsteel",
+    "helios-ag/fm-summernote-bundle": "Summernote Bundle by me"
+  },
+  "autoload": {
+    "psr-4": { "FM\\ElfinderBundle\\": "" }
+  }
+}
