@@ -1,0 +1,25 @@
+{% block tinymce_widget %}
+    <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+    {% if enable %}
+        <script type="text/javascript" src="{{ tinymce_base_path(base_path) }}"></script>
+        <script type="text/javascript">
+                tinymce.init({
+                    selector: "textarea#{{ id }}",
+                    {{ tinymce_theme(instance) }}
+                    {{ tinymce_width(instance) }}
+                    {{ tinymce_height(instance) }}
+                    {{ tinymce_plugins(instance) }}
+                    {{ tinymce_image_advtab(instance) }}
+                    {{ tinymce_menubar(instance) }}
+                    {{ tinymce_toolbar_items_size(instance) }}
+                    {{ tinymce_templates(instance) }}
+                    {{ tinymce_toolbars(instance) }}
+                    {{ tinymce_filebrowser_callback(instance) }}
+                });
+                {% if tinymce_filebrowser_type(instance) == 'fm_elfinder' %}
+                    {% include 'FMTinyMCEBundle::elfinder_helper.html.twig' %}
+                {% endif %}
+        </script>
+
+    {% endif %}
+{% endblock %}
