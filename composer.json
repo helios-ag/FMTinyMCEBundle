@@ -13,7 +13,7 @@
     },
     {
       "name": "Symfony Community",
-      "homepage": "https://github.com/helios-ag/FMElfinderBundle/contributors"
+      "homepage": "https://github.com/helios-ag/FMTinyMCEBundle/contributors"
     }
   ],
   "require": {
@@ -29,12 +29,9 @@
     "twig/twig": "~1.12"
   },
   "suggest": {
-    "stfalcon/tinymce-bundle": "TinyMCE Bundle by Stfalcon",
-    "egeloen/ckeditor-bundle": "CKEditor Bundle by Egeloen",
-    "trsteel/ckeditor-bundle": "CKEditor Bundle by trsteel",
-    "helios-ag/fm-summernote-bundle": "Summernote Bundle by me"
+    "helios-ag/fm-elfinder-bundle": "FMElfinder Bundle which allow to "
   },
   "autoload": {
-    "psr-4": { "FM\\ElfinderBundle\\": "" }
+    "psr-4": { "FM\\TinyMCEBundle\\": "" }
   }
 }
