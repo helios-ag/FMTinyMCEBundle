@@ -29,7 +29,7 @@
     "twig/twig": "~1.12"
   },
   "suggest": {
-    "helios-ag/fm-elfinder-bundle": "FMElfinder Bundle which allow to "
+    "helios-ag/fm-elfinder-bundle": "FMElfinderBundle which allow to manage uploaded files"
   },
   "autoload": {
     "psr-4": { "FM\\TinyMCEBundle\\": "" }

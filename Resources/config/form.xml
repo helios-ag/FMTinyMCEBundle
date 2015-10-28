@@ -9,6 +9,5 @@
             <argument>%fm_tinymce%</argument>
             <tag name="form.type" alias="tinymce" />
         </service>
-
     </services>
 </container>

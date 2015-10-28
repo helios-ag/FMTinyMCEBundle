@@ -3,15 +3,19 @@ FMTinyMCEBundle
 
 [TinyMCE](https://github.com/tinymce/tinymce) integration in Symfony2
 
+Please note, bundle is in early stage of development, many things will change.
+The purpose of bundle is to provide seamless integration between elFinder and TinyMCE editor.
+Inspired by IvoryCKEditorBundle
+
 ### Code Quality Assurance ###
 
-| SensioLabs Insight | Travis CI | Scrutinizer CI|
-| ------------------------|-------------|-----------------|
-|[![SensioLabsInsight](https://insight.sensiolabs.com/projects/604032ab-06ef-4ee2-b0cf-bb5240b9cd17/mini.png)](https://insight.sensiolabs.com/projects/604032ab-06ef-4ee2-b0cf-bb5240b9cd17)|[![Build Status](https://secure.travis-ci.org/helios-ag/FMTinyMCEBundle.png)](http://travis-ci.org/helios-ag/FMElfinderBundle)|[![Build Status](https://scrutinizer-ci.com/g/helios-ag/FMElfinderBundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/helios-ag/FMElfinderBundle/build-status/master) [![Code Coverage](https://scrutinizer-ci.com/g/helios-ag/FMElfinderBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/helios-ag/FMElfinderBundle/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/helios-ag/FMElfinderBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/helios-ag/FMElfinderBundle/?branch=master)
+| Travis CI | Scrutinizer CI|
+|-------------|-----------------|
+|[![Build Status](https://secure.travis-ci.org/helios-ag/FMTinyMCEBundle.png)](http://travis-ci.org/helios-ag/FMTinyMCEBundle)|[![Build Status](https://scrutinizer-ci.com/g/helios-ag/FMTinyMCEBundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/helios-ag/FMTinyMCEBundle/build-status/master) [![Code Coverage](https://scrutinizer-ci.com/g/helios-ag/FMElfinderBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/helios-ag/FMElfinderBundle/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/helios-ag/FMTinyMCEBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/helios-ag/FMTinyMCEBundle/?branch=master)
 
-[![Dependency Status](https://www.versioneye.com/user/projects/53db56ae4b3ac897b60001d4/badge.svg?style=flat)](https://www.versioneye.com/user/projects/53db56ae4b3ac897b60001d4)
+
 [![Latest Stable Version](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/v/stable.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle) [![Total Downloads](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/downloads.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle) [![Latest Unstable Version](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/v/unstable.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle) [![License](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/license.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/helios-ag/fmtinymcebundle/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 
 **TinyMCE** is a platform independent web-based JavaScript WYSIWYG HTML editor control released as open source under LGPL.
 
@@ -83,8 +87,48 @@ app/console assets:install web
 ```yaml
 fm_tinymce:
     instances:
-        default:
-            locale: %locale% # defaults to current request locale
+        first_instance:
+            locale: en_US
+            width: 300
+            height: 400
         my_advanced_configuration:
              locale: ru_RU                   
+```
+
+##Advanced Configuration
+
+To make story short, here example of Integration between TinyMCE and Elfinder bundles
+
+```yaml
+fm_tinymce:    
+    instances:            # Required        
+        elfinder:
+            locale:               ru_RU
+            image_advtab:         true
+            file_picker_callback:  elFinderBrowser                        
+            filebrowser_type:     fm_elfinder
+            filebrowser:                
+                route:                elfinder
+                route_parameters:     
+                    instance: tinymce
+
+```
+
+and configuration for ElFinderBrowser
+
+```yaml
+fm_elfinder:
+    instances:
+        tinymce:
+            locale: %locale%
+            editor: tinymce4 # 
+            include_assets: true
+            relative_path: true
+            connector:
+                roots:       # at least one root must be defined
+                    uploads:
+                        show_hidden: false
+                        driver: LocalFileSystem
+                        path: uploads
+                        upload_allow: ['all']
 ```
