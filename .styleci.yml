@@ -8,6 +8,5 @@ enabled:
    - align_equals
 
 disabled:
-   - psr0
    - unalign_double_arrow
    - unalign_equals
