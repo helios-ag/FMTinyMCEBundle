@@ -1,0 +1,4 @@
+fm_tinymce:
+    instances:
+        default:
+            menubar: 'file edit'
