@@ -29,6 +29,7 @@ class FMTinyMCEExtension extends Extension
 
         $container->setParameter('fm_tinymce', $config);
         $container->setParameter('fm_tinymce.instances', $config['instances']);
+
     }
 
     /**

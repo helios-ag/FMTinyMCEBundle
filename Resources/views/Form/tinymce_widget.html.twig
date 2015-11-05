@@ -1,10 +1,13 @@
 {% block tinymce_widget %}
     <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
     {% if enable %}
-        <script type="text/javascript" src="{{ tinymce_base_path(base_path) }}"></script>
+        <script type="text/javascript" src="{{ tinymce_path(js_path) }}"></script>
         <script type="text/javascript">
                 tinymce.init({
                     selector: "textarea#{{ id }}",
+                    {{ tinymce_language(instance) }}
+                    {{ tinymce_relative_urls(instance) }}
+                    {{ tinymce_convert_urls(instance) }}
                     {{ tinymce_theme(instance) }}
                     {{ tinymce_width(instance) }}
                     {{ tinymce_height(instance) }}
@@ -14,7 +17,8 @@
                     {{ tinymce_toolbar_items_size(instance) }}
                     {{ tinymce_templates(instance) }}
                     {{ tinymce_toolbars(instance) }}
-                    {{ tinymce_filebrowser_callback(instance) }}
+
+                    {{ tinymce_file_picker_callback(instance) }}
                 });
                 {% if tinymce_filebrowser_type(instance) == 'fm_elfinder' %}
                     {% include 'FMTinyMCEBundle::elfinder_helper.html.twig' %}

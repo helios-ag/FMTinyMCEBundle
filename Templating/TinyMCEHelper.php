@@ -4,9 +4,8 @@ namespace FM\TinyMCEBundle\Templating;
 
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Routing\Router;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Templating\Helper\Helper;
-use Ivory\JsonBuilder\JsonBuilder;
-use Symfony\Component\Asset\PackageInterface;
 /**
  * Class TinyMCEHelper
  * @package FM\TinyMCEBundle\Templating
@@ -32,25 +31,45 @@ class TinyMCEHelper extends Helper
     /**
      * TinyMCEHelper constructor.
      * @param array $parameters
-     * @param Router $router
+     * @param RouterInterface $router
      * @param Packages $assetsHelper
      */
-    public function __construct($parameters, Router $router, Packages $assetsHelper)
+    public function __construct($parameters, RouterInterface $router, Packages $assetsHelper)
     {
         $this->router       = $router;
         $this->assetsHelper = $assetsHelper;
         $this->parameters   = $parameters;
     }
 
+    /**
+     * gets the js path.
+     *
+     * @param string $jsPath The js path.
+     *
+     * @return string The rendered js path.
+     */
+    public function getJsPath($jsPath)
+    {
+        return $this->assetsHelper->getUrl($jsPath);
+    }
+
+    /**
+     * @param $path
+     * @return string
+     */
+    public function getBasePath($path)
+    {
+        return $this->fixPath($this->assetsHelper->getUrl($path));
+    }
 
     /**
      * @param $instance
      * @return string
      */
-    public function renderFileBrowser($instance)
+    public function getFilePickerCallback($instance = 'default')
     {
         if($fileBrowser = $this->parameters[$instance]['file_picker_callback']) {
-            return 'file_picker_callback: ' . $fileBrowser;
+            return sprintf('file_picker_callback: %s,',$fileBrowser);
         }
         return '';
     }
@@ -59,7 +78,7 @@ class TinyMCEHelper extends Helper
      * @param $instance
      * @return string
      */
-    public function fileBrowserPathHelper($instance)
+    public function getFileBrowserPathHelper($instance = 'default')
     {
         $path = '';
         if($fileBrowser = $this->parameters[$instance]['filebrowser']) {
@@ -69,32 +88,42 @@ class TinyMCEHelper extends Helper
         return $path;
     }
 
+
     /**
-     * @param $path
-     * @return string
+     * @param string $instance
+     * @return array
      */
-    public function renderBasePath($path)
+    protected function fixConfigLanguage($instance = 'default')
     {
-        return $this->assetsHelper->getUrl($path);
+        $locale = 'en';
+        if (isset($this->parameters[$instance]['locale'])) {
+            $locale = strtolower(str_replace('-', '_', $this->parameters[$instance]['locale']));
+        }
+        return $locale;
+    }
+
+    private function fixPath($path)
+    {
+        if (($position = strpos($path, '?')) !== false) {
+            return substr($path, 0, $position);
+        }
+        return $path;
     }
 
     /**
-     * @param array $config
-     * @return array
+     * @param string $instance
+     * @return string
      */
-    public function fixConfigLanguage(array $config)
+    public function getLanguage($instance = 'default')
     {
-        if (isset($config['language'])) {
-            $config['language'] = strtolower(str_replace('_', '-', $config['locale']));
-        }
-        return $config;
+        return sprintf('language: "%s",', $this->fixConfigLanguage($instance));
     }
 
     /**
      * @param $instance
      * @return array
      */
-    public function getToolbars($instance)
+    public function getToolbars($instance = 'default')
     {
         $toolbarsString = '';
         $toolbars = $this->parameters[$instance]['toolbars'];
@@ -110,7 +139,16 @@ class TinyMCEHelper extends Helper
      * @param $instance
      * @return string
      */
-    public function getTheme($instance)
+    public function getToolbarItemSize($instance = 'default')
+    {
+        return sprintf('toolbar_items_size: "%s",', $this->parameters[$instance]['toolbar_item_size']);
+    }
+
+    /**
+     * @param $instance
+     * @return string
+     */
+    public function getTheme($instance = 'default')
     {
         return sprintf('theme: "%s",',$this->parameters[$instance]['theme']);
     }
@@ -119,7 +157,7 @@ class TinyMCEHelper extends Helper
      * @param $instance
      * @return string
      */
-    public function getPlugins($instance)
+    public function getPlugins($instance = 'default')
     {
         $plugins = $this->parameters[$instance]['plugins'];
 
@@ -130,7 +168,7 @@ class TinyMCEHelper extends Helper
      * @param $instance
      * @return string
      */
-    public function getTemplates($instance)
+    public function getTemplates($instance = 'default')
     {
         $templateString = '';
         $templates = array();
@@ -145,12 +183,20 @@ class TinyMCEHelper extends Helper
         return sprintf('templates: [%s],', $templateString);
     }
 
-    public function getWidth($instance)
+    /**
+     * @param $instance
+     * @return string
+     */
+    public function getWidth($instance = 'default')
     {
         return sprintf("width: %s,", $this->parameters[$instance]['width']);
     }
 
-    public function getHeight($instance)
+    /**
+     * @param $instance
+     * @return string
+     */
+    public function getHeight($instance = 'default')
     {
         return sprintf("height: %s,",$this->parameters[$instance]['height']);
     }
@@ -159,7 +205,7 @@ class TinyMCEHelper extends Helper
      * @param $instance
      * @return string
      */
-    public function getImgAdvTab($instance)
+    public function getImgAdvTab($instance = 'default')
     {
         $imgAdvTab = $this->parameters[$instance]['image_advtab'] ? 'true' : 'false';
 
@@ -170,31 +216,36 @@ class TinyMCEHelper extends Helper
      * @param $instance
      * @return string
      */
-    public function getMenubar($instance)
+    public function getMenubar($instance = 'default')
     {
         $menubar = $this->parameters[$instance]['menubar'];
 
-        return sprintf('menubar: %s,', $menubar);
-    }
-
-    /**
-     * @param $instance
-     * @return string
-     */
-    public function getToolbarItemSize($instance)
-    {
-        return sprintf('toolbar_items_size: "%s",', $this->parameters[$instance]['toolbar_item_size']);
+        return sprintf('menubar: "%s",', $menubar);
     }
 
     /**
      * @param $instance
      * @return mixed
      */
-    public function renderFileBrowserType($instance)
+    public function getFileBrowserType($instance = 'default')
     {
         return $this->parameters[$instance]['filebrowser_type'];
     }
 
+
+    public function getConvertUrls($instance = 'default')
+    {
+        $value = $this->parameters[$instance]['convert_urls'] ? 'true' : 'false';
+
+        return sprintf('convert_urls: %s,', $value);
+    }
+
+    public function getRelativeUrls($instance = 'default')
+    {
+        $value = $this->parameters[$instance]['relative_urls'] ? 'true' : 'false';
+
+        return sprintf('relative_urls: %s,', $value);
+    }
     /**
      * Returns the canonical name of this helper.
      *
@@ -206,5 +257,6 @@ class TinyMCEHelper extends Helper
     {
         return 'fm_tinymce';
     }
+
 
 }
