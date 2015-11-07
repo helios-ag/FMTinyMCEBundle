@@ -2,22 +2,17 @@
 
 namespace FM\TinyMCEBundle\Tests\DependencyInjection;
 
-use FM\TinyMCEBundle\Form\Type\TinyMCEType;
-use FM\TinyMCEBundle\Twig\TinyMCEExtension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-
-use FM\TinyMCEBundle\DependencyInjection\Compiler\TwigFormPass;
 use FM\TinyMCEBundle\DependencyInjection\FMTinyMCEExtension;
-use FM\TinyMCEBundle\Tests\Fixtures\Extension\FrameworkExtension;;
+use FM\TinyMCEBundle\Tests\Fixtures\Extension\FrameworkExtension;
 
 /**
  * @author GeLo <geloen.eric@gmail.com>
  * @author Adam Misiorny <adam.misiorny@gmail.com>
  * @author Al Ganiev <helios.ag@gmail.com>
  * Class TinyMCEExtensionTest
- * @package FM\TinyMCEBundle\Tests\DependencyInjection
  */
 class TinyMCEExtensionTest extends \PHPUnit_Framework_TestCase
 {
@@ -34,7 +29,6 @@ class TinyMCEExtensionTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-
         if (class_exists('Symfony\Component\Asset\Packages')) {
             $this->assetsHelperMock = $this->getMockBuilder('Symfony\Component\Asset\Packages')
                 ->disableOriginalConstructor()
@@ -46,7 +40,7 @@ class TinyMCEExtensionTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->routerMock = $this->getMock('Symfony\Component\Routing\RouterInterface');
-        $this->container = new ContainerBuilder();
+        $this->container  = new ContainerBuilder();
 
         $this->container->set('assets.packages', $this->assetsHelperMock);
         $this->container->set('router', $this->routerMock);

@@ -5,8 +5,7 @@ namespace FM\TinyMCEBundle\Twig;
 use FM\TinyMCEBundle\Templating\TinyMCEHelper;
 
 /**
- * Class TinyMCEExtenion
- * @package FM\TinyMCEBundle\Twig
+ * Class TinyMCEExtenion.
  */
 class TinyMCEExtension extends \Twig_Extension
 {
@@ -17,6 +16,7 @@ class TinyMCEExtension extends \Twig_Extension
 
     /**
      * TinyMCEExtension constructor.
+     *
      * @param TinyMCEHelper $helper
      */
     public function __construct(TinyMCEHelper $helper)
@@ -54,6 +54,7 @@ class TinyMCEExtension extends \Twig_Extension
 
     /**
      * @param $path
+     *
      * @return string
      */
     public function renderJsPath($path)
@@ -63,6 +64,7 @@ class TinyMCEExtension extends \Twig_Extension
 
     /**
      * @param $instance
+     *
      * @return string
      */
     public function renderFilePicker($instance)
@@ -72,6 +74,7 @@ class TinyMCEExtension extends \Twig_Extension
 
     /**
      * @param $instance
+     *
      * @return string
      */
     public function renderFileBrowserType($instance)
@@ -81,6 +84,7 @@ class TinyMCEExtension extends \Twig_Extension
 
     /**
      * @param $instance
+     *
      * @return string
      */
     public function renderFileBrowserPath($instance)
@@ -90,6 +94,7 @@ class TinyMCEExtension extends \Twig_Extension
 
     /**
      * @param $instance
+     *
      * @return string
      */
     public function renderLanguage($instance)
@@ -99,6 +104,7 @@ class TinyMCEExtension extends \Twig_Extension
 
     /**
      * @param $instance
+     *
      * @return string
      */
     public function renderRelativeUrls($instance)
@@ -108,14 +114,17 @@ class TinyMCEExtension extends \Twig_Extension
 
     /**
      * @param $instance
+     *
      * @return string
      */
     public function renderConvertUrls($instance)
     {
         return $this->helper->getConvertUrls($instance);
     }
+
     /**
      * @param $instance
+     *
      * @return mixed
      */
     public function renderToolbarItemSize($instance)
@@ -125,6 +134,7 @@ class TinyMCEExtension extends \Twig_Extension
 
     /**
      * @param $instance
+     *
      * @return string
      */
     public function renderTemplates($instance)
@@ -134,6 +144,7 @@ class TinyMCEExtension extends \Twig_Extension
 
     /**
      * @param $instance
+     *
      * @return string
      */
     public function renderTheme($instance)
@@ -143,6 +154,7 @@ class TinyMCEExtension extends \Twig_Extension
 
     /**
      * @param $instance
+     *
      * @return string
      */
     public function renderImgAdvTab($instance)
@@ -152,6 +164,7 @@ class TinyMCEExtension extends \Twig_Extension
 
     /**
      * @param $instance
+     *
      * @return string
      */
     public function renderMenubar($instance)
@@ -161,6 +174,7 @@ class TinyMCEExtension extends \Twig_Extension
 
     /**
      * @param $instance
+     *
      * @return mixed
      */
     public function renderWidth($instance)
@@ -170,6 +184,7 @@ class TinyMCEExtension extends \Twig_Extension
 
     /**
      * @param $instance
+     *
      * @return mixed
      */
     public function renderHeight($instance)
@@ -179,6 +194,7 @@ class TinyMCEExtension extends \Twig_Extension
 
     /**
      * @param $instance
+     *
      * @return string
      */
     public function renderToolbars($instance)
@@ -188,6 +204,7 @@ class TinyMCEExtension extends \Twig_Extension
 
     /**
      * @param $instance
+     *
      * @return string
      */
     public function renderPlugins($instance)
@@ -197,6 +214,7 @@ class TinyMCEExtension extends \Twig_Extension
 
     /**
      * @param $path
+     *
      * @return mixed
      */
     public function renderBasePath($path)

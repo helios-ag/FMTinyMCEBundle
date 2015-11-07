@@ -8,14 +8,12 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 /**
- * Class FMTinyMCEExtension
- * @package FM\TinyMCEBundle\DependencyInjection
+ * Class FMTinyMCEExtension.
  */
 class FMTinyMCEExtension extends Extension
 {
-
     /**
-     * @param array $configs
+     * @param array            $configs
      * @param ContainerBuilder $container
      */
     public function load(array $configs, ContainerBuilder $container)
@@ -29,7 +27,6 @@ class FMTinyMCEExtension extends Extension
 
         $container->setParameter('fm_tinymce', $config);
         $container->setParameter('fm_tinymce.instances', $config['instances']);
-
     }
 
     /**
@@ -39,5 +36,4 @@ class FMTinyMCEExtension extends Extension
     {
         return 'fm_tinymce';
     }
-
 }
