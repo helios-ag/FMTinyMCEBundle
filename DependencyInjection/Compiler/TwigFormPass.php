@@ -6,8 +6,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 /**
- * Class TwigFormPass
- * @package FM\TinyMCEBundle\DependencyInjection\Compiler
+ * Class TwigFormPass.
  */
 class TwigFormPass implements CompilerPassInterface
 {

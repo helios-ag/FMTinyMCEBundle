@@ -8,8 +8,7 @@ use FM\TinyMCEBundle\DependencyInjection\Compiler\TwigFormPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
- * Class TinyMCEBundle
- * @package FM\TinyMCEBundle
+ * Class TinyMCEBundle.
  */
 class FMTinyMCEBundle extends Bundle
 {
@@ -25,7 +24,7 @@ class FMTinyMCEBundle extends Bundle
 
     /**
      * @return FMTinyMCEExtension
-     * Redefining root node
+     *                            Redefining root node
      */
     public function getContainerExtension()
     {

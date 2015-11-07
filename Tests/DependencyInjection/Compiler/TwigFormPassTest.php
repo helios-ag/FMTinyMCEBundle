@@ -6,15 +6,14 @@ use FM\TinyMCEBundle\DependencyInjection\Compiler\TwigFormPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
- * Class TwigFormPassTest
- * @package FM\TinyMCEBundle\Tests\Compiler
+ * Class TwigFormPassTest.
  */
 class TwigFormPassTest extends \PHPUnit_Framework_TestCase
 {
     public function testProcess()
     {
         $container = new ContainerBuilder();
-        $pass = new TwigFormPass();
+        $pass      = new TwigFormPass();
         $pass->process($container);
         $this->assertFalse($container->hasParameter('twig.form.resources'));
         $container = new ContainerBuilder();

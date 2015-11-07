@@ -6,12 +6,10 @@ use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
 /**
- * Class AppKernel
- * @package FM\TinyMCEBundle\Tests
+ * Class AppKernel.
  */
 class AppKernel extends Kernel
 {
-
     public function getRootDir()
     {
         return __DIR__.'/Fixtures';
@@ -24,6 +22,7 @@ class AppKernel extends Kernel
             new \Symfony\Bundle\TwigBundle\TwigBundle(),
             new \FM\TinyMCEBundle\FMTinyMCEBundle(),
         );
+
         return $bundles;
     }
 

@@ -87,6 +87,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end();
     }
+
     /**
      * @return \Symfony\Component\Config\Definition\Builder\NodeDefinition The toolbars node.
      */
@@ -99,7 +100,6 @@ class Configuration implements ConfigurationInterface
                 ->prototype('scalar')->end()
             ->end();
     }
-
 
     /**
      * Creates a node.

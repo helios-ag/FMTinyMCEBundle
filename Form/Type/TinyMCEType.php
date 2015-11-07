@@ -10,8 +10,7 @@ use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class TinyMCEType
- * @package FM\TinyMCEBundle\Form\Type
+ * Class TinyMCEType.
  */
 class TinyMCEType extends AbstractType
 {
@@ -42,6 +41,7 @@ class TinyMCEType extends AbstractType
 
     /**
      * @param bool $enable
+     *
      * @return bool
      */
     public function isEnabled($enable = true)
@@ -49,12 +49,13 @@ class TinyMCEType extends AbstractType
         if ($enable !== null) {
             $this->enable = (bool) $enable;
         }
+
         return $this->enable;
     }
 
     public function isInline($inline = null)
     {
-        if($inline !== null ) {
+        if ($inline !== null) {
             $this->inline = (bool) $inline;
         }
 
@@ -63,13 +64,14 @@ class TinyMCEType extends AbstractType
 
     /**
      * TinyMCEType constructor.
+     *
      * @param array $parameters
      */
     public function __construct(array $parameters = array())
     {
         $this->parameters = $parameters;
-        $this->inline = $parameters['inline'];
-        $this->enable = $parameters['enable'];
+        $this->inline     = $parameters['inline'];
+        $this->enable     = $parameters['enable'];
         $this->setBasePath($parameters['base_path']);
         $this->setJsPath($parameters['js_path']);
     }
@@ -100,7 +102,6 @@ class TinyMCEType extends AbstractType
             $view->vars['inline']    = $form->getConfig()->getAttribute('inline');
             $view->vars['js_path']   = $form->getConfig()->getAttribute('js_path');
             $view->vars['instance']  = $form->getConfig()->getAttribute('instance');
-
         }
     }
 
@@ -109,11 +110,10 @@ class TinyMCEType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-
         $resolver
             ->setDefaults(array(
                 'enable'      => $this->enable,
-                'inline'     => $this->inline,
+                'inline'      => $this->inline,
                 'base_path'   => $this->basePath,
                 'js_path'     => $this->jsPath,
                 'instance'    => 'default',
@@ -135,6 +135,7 @@ class TinyMCEType extends AbstractType
             $resolver->addAllowedTypes($allowedTypesMap);
         }
     }
+
     /**
      * {@inheritdoc}
      */
