@@ -54,7 +54,6 @@ class TinyMCETypeTest extends TypeTestCase
      */
     protected function tearDown()
     {
-        unset($this->container);
         unset($this->factory);
         unset($this->tinyMCEtype);
     }
