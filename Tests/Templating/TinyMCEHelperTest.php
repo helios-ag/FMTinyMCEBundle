@@ -4,12 +4,10 @@ namespace FM\TinyMCEBundle\Tests\Templating;
 
 use DirectoryIterator;
 use FM\TinyMCEBundle\Templating\TinyMCEHelper;
-use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Yaml\Parser;
 
 /**
- * Class TinyMCEHelperTest
- * @package FM\TinyMCEBundle\Tests\Templating
+ * Class TinyMCEHelperTest.
  */
 class TinyMCEHelperTest extends \PHPUnit_Framework_TestCase
 {
@@ -36,8 +34,8 @@ class TinyMCEHelperTest extends \PHPUnit_Framework_TestCase
         }
         $this->routerMock = $this->getMock('Symfony\Component\Routing\RouterInterface');
 
-        $parser = new Parser();
-        $params = $parser->parse(file_get_contents(__DIR__.'/../Fixtures/config/DI/default.yml'));
+        $parser       = new Parser();
+        $params       = $parser->parse(file_get_contents(__DIR__.'/../Fixtures/config/DI/default.yml'));
         $this->helper = new TinyMCEHelper($params['fm_tinymce']['instances'], $this->routerMock, $this->assetsHelperMock);
     }
 
@@ -48,19 +46,21 @@ class TinyMCEHelperTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Provides params array from yaml files
+     * Provides params array from yaml files.
+     *
      * @return array
      */
     public function paramsProvider()
     {
         $parser = new Parser();
-        $data = array();
+        $data   = array();
 
         foreach (new DirectoryIterator(__DIR__.'/../Fixtures/config/DI/') as $file) {
             if ($file->isFile()) {
                 $data[$file->getFilename()] = $parser->parse($file->getFilename());
             }
         }
+
         return $data;
     }
 
@@ -77,7 +77,6 @@ class TinyMCEHelperTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-
     /**
      * Gets the language.
      *
@@ -93,6 +92,7 @@ class TinyMCEHelperTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider pathProvider
+     *
      * @param $path
      * @param $asset
      * @param $url
@@ -120,7 +120,7 @@ class TinyMCEHelperTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests file_picker_callback
+     * Tests file_picker_callback.
      */
     public function testGetFilePickerCallback()
     {
@@ -152,7 +152,6 @@ class TinyMCEHelperTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame('toolbar_items_size: "small",', $this->helper->getToolbarItemSize());
     }
-
 
     public function testGetTheme()
     {

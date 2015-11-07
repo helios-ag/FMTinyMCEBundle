@@ -8,8 +8,7 @@ use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 /**
- * Class TinyMCETypeTest
- * @package FM\TinyMCEBundle\Tests
+ * Class TinyMCETypeTest.
  */
 class TinyMCETypeTest extends TypeTestCase
 {
@@ -36,12 +35,12 @@ class TinyMCETypeTest extends TypeTestCase
     }
 
     /**
-     * {@inheritdooc}
+     * {@inheritdooc}.
      */
     protected function setUp()
     {
         parent::setUp();
-        $params = self::$kernel->getContainer()->get('service_container')->getParameter('fm_tinymce');
+        $params            = self::$kernel->getContainer()->get('service_container')->getParameter('fm_tinymce');
         $this->tinyMCEtype = new TinyMCEType($params);
 
         $this->factory = Forms::createFormFactoryBuilder()
@@ -73,6 +72,4 @@ class TinyMCETypeTest extends TypeTestCase
         $this->assertArrayHasKey('base_path', $view->vars);
         $this->assertSame('bundles/fmtinymce/', $view->vars['base_path']);
     }
-
-
 }
