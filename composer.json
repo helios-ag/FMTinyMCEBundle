@@ -26,7 +26,8 @@
     "symfony/form": "~2.7",
     "phpunit/phpunit": "~4.0",
     "symfony/yaml": "^2.0.5",
-    "twig/twig": "~1.12"
+    "twig/twig": "~1.12",
+    "satooshi/php-coveralls": "dev-master"
   },
   "suggest": {
     "helios-ag/fm-elfinder-bundle": "FMElfinderBundle which allow to manage uploaded files"
