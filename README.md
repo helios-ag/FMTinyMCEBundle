@@ -11,11 +11,12 @@ Inspired by IvoryCKEditorBundle
 
 | Travis CI | Scrutinizer CI|
 |-------------|-----------------|
-|[![Build Status](https://secure.travis-ci.org/helios-ag/FMTinyMCEBundle.png)](http://travis-ci.org/helios-ag/FMTinyMCEBundle)|[![Build Status](https://scrutinizer-ci.com/g/helios-ag/FMTinyMCEBundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/helios-ag/FMTinyMCEBundle/build-status/master) [![Code Coverage](https://scrutinizer-ci.com/g/helios-ag/FMTinyMCEBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/helios-ag/FMElfinderBundle/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/helios-ag/FMTinyMCEBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/helios-ag/FMTinyMCEBundle/?branch=master)
+|[![Build Status](https://secure.travis-ci.org/helios-ag/FMTinyMCEBundle.png)](http://travis-ci.org/helios-ag/FMTinyMCEBundle)|[![Build Status](https://scrutinizer-ci.com/g/helios-ag/FMTinyMCEBundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/helios-ag/FMTinyMCEBundle/build-status/master) [![Code Coverage](https://scrutinizer-ci.com/g/helios-ag/FMTinyMCEBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/helios-ag/FMTinyMCEBundle/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/helios-ag/FMTinyMCEBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/helios-ag/FMTinyMCEBundle/?branch=master)
 
 
 [![Latest Stable Version](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/v/stable.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle) [![Total Downloads](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/downloads.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle) [![Latest Unstable Version](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/v/unstable.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle) [![License](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/license.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle)
 
+[![StyleCI](https://styleci.io/repos/44680984/shield)](https://styleci.io/repos/44680984)
 
 **TinyMCE** is a platform independent web-based JavaScript WYSIWYG HTML editor control released as open source under LGPL.
 
@@ -88,11 +89,11 @@ app/console assets:install web
 fm_tinymce:
     instances:
         first_instance:
-            locale: en_US
+            language: en_US
             width: 300
             height: 400
         my_advanced_configuration:
-             locale: ru_RU                   
+             locale: ru_RU
 ```
 
 ##Advanced Configuration
@@ -100,16 +101,16 @@ fm_tinymce:
 To make story short, here example of Integration between TinyMCE and Elfinder bundles
 
 ```yaml
-fm_tinymce:    
-    instances:            # Required        
+fm_tinymce:
+    instances:            # Required
         elfinder:
-            locale:               ru_RU
+            language: ru
             image_advtab:         true
-            file_picker_callback:  elFinderBrowser                        
+            file_picker_callback: elFinderBrowser
             filebrowser_type:     fm_elfinder
-            filebrowser:                
+            filebrowser:
                 route:                elfinder
-                route_parameters:     
+                route_parameters:
                     instance: tinymce
 
 ```
@@ -120,8 +121,8 @@ and configuration for ElFinderBrowser
 fm_elfinder:
     instances:
         tinymce:
-            locale: %locale%
-            editor: tinymce4 # 
+            language: ru
+            editor: tinymce4 #
             include_assets: true
             relative_path: true
             connector:
@@ -132,3 +133,38 @@ fm_elfinder:
                         path: uploads
                         upload_allow: ['all']
 ```
+
+Full configuration reference example
+
+
+```yaml
+fm_tinymce:
+    enable:               true
+    inline:               false
+    base_path:            bundles/fmtinymce/
+    js_path:              bundles/fmtinymce/tinymce.min.js
+    instances:
+        default:
+            language:             en_US
+            width:                600
+            height:               300
+            theme:                modern
+            toolbar_item_size:    small
+            menubar:              '"file edit insert view format table tools"'
+            image_advtab:         false
+            templates:
+                templates:
+                    title:                ~
+                    content:              ~
+            plugins:              ""
+            relative_urls:        false
+            convert_urls:         false
+            toolbars:
+                toolbar1:         "undo redo | styleselect | bold italic | link image"
+            filebrowser_type:     fm_elfinder
+            file_picker_callback: elFinderBrowser
+            filebrowser:
+                url:                  http://localhost/elfinder
+                route:                elfinder
+                route_parameters:
+                    instance: default
