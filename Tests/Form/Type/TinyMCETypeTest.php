@@ -34,6 +34,7 @@ class TinyMCETypeTest extends TypeTestCase
         self::$kernel->boot();
         self::$container = self::$kernel->getContainer();
     }
+
     /**
      * {@inheritdooc}
      */
@@ -71,7 +72,7 @@ class TinyMCETypeTest extends TypeTestCase
         $form = $this->factory->create('tinymce', null, array('instance' => 'default'));
         $view = $form->createView();
         $this->assertArrayHasKey('base_path', $view->vars);
-        $this->assertSame('/bundles/fmtinymce/tinymce.min.js', $view->vars['base_path']);
+        $this->assertSame('bundles/fmtinymce/', $view->vars['base_path']);
     }
 
 

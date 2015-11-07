@@ -15,6 +15,10 @@ class TinyMCEExtension extends \Twig_Extension
      */
     private $helper;
 
+    /**
+     * TinyMCEExtension constructor.
+     * @param TinyMCEHelper $helper
+     */
     public function __construct(TinyMCEHelper $helper)
     {
         $this->helper = $helper;
@@ -28,9 +32,13 @@ class TinyMCEExtension extends \Twig_Extension
         $options = array('is_safe' => array('html'));
 
         return array(
-            new \Twig_SimpleFunction('tinymce_base_path', array($this, 'renderBasePath'), $options),
-            new \Twig_SimpleFunction('tinymce_filebrowser_callback', array($this, 'renderFilebrowser'), $options),
+            new \Twig_SimpleFunction('tinymce_path', array($this, 'renderJsPath'), $options),
+            new \Twig_SimpleFunction('tinymce_file_picker_callback', array($this, 'renderFilePicker'), $options),
+            new \Twig_SimpleFunction('tinymce_filebrowser_path', array($this, 'renderFilebrowserPath'), $options),
             new \Twig_SimpleFunction('tinymce_filebrowser_type', array($this, 'renderFileBrowserType'), $options),
+            new \Twig_SimpleFunction('tinymce_language', array($this, 'renderLanguage'), $options),
+            new \Twig_SimpleFunction('tinymce_relative_urls', array($this, 'renderRelativeUrls'), $options),
+            new \Twig_SimpleFunction('tinymce_convert_urls', array($this, 'renderConvertUrls'), $options),
             new \Twig_SimpleFunction('tinymce_toolbars', array($this, 'renderToolbars'), $options),
             new \Twig_SimpleFunction('tinymce_plugins', array($this, 'renderPlugins'), $options),
             new \Twig_SimpleFunction('tinymce_theme', array($this, 'renderTheme'), $options),
@@ -40,8 +48,26 @@ class TinyMCEExtension extends \Twig_Extension
             new \Twig_SimpleFunction('tinymce_menubar', array($this, 'renderMenubar'), $options),
             new \Twig_SimpleFunction('tinymce_templates', array($this, 'renderTemplates'), $options),
             new \Twig_SimpleFunction('tinymce_toolbar_items_size', array($this, 'renderToolbarItemSize'), $options),
-            new \Twig_SimpleFunction('tinymce_filebrowser_path', array($this, 'renderFilebrowserPath'), $options),
+
         );
+    }
+
+    /**
+     * @param $path
+     * @return string
+     */
+    public function renderJsPath($path)
+    {
+        return $this->helper->getJsPath($path);
+    }
+
+    /**
+     * @param $instance
+     * @return string
+     */
+    public function renderFilePicker($instance)
+    {
+        return $this->helper->getFilePickerCallback($instance);
     }
 
     /**
@@ -50,18 +76,44 @@ class TinyMCEExtension extends \Twig_Extension
      */
     public function renderFileBrowserType($instance)
     {
-        return $this->helper->renderFileBrowserType($instance);
+        return $this->helper->getFileBrowserType($instance);
     }
 
     /**
      * @param $instance
      * @return string
      */
-    public function renderFilebrowserPath($instance)
+    public function renderFileBrowserPath($instance)
     {
-        return $this->helper->fileBrowserPathHelper($instance);
+        return $this->helper->getFileBrowserPathHelper($instance);
     }
 
+    /**
+     * @param $instance
+     * @return string
+     */
+    public function renderLanguage($instance)
+    {
+        return $this->helper->getLanguage($instance);
+    }
+
+    /**
+     * @param $instance
+     * @return string
+     */
+    public function renderRelativeUrls($instance)
+    {
+        return $this->helper->getRelativeUrls($instance);
+    }
+
+    /**
+     * @param $instance
+     * @return string
+     */
+    public function renderConvertUrls($instance)
+    {
+        return $this->helper->getConvertUrls($instance);
+    }
     /**
      * @param $instance
      * @return mixed
@@ -129,15 +181,6 @@ class TinyMCEExtension extends \Twig_Extension
      * @param $instance
      * @return string
      */
-    public function renderFilebrowser($instance)
-    {
-        return $this->helper->renderFilebrowser($instance);
-    }
-
-    /**
-     * @param $instance
-     * @return string
-     */
     public function renderToolbars($instance)
     {
         return $this->helper->getToolbars($instance);
@@ -158,7 +201,7 @@ class TinyMCEExtension extends \Twig_Extension
      */
     public function renderBasePath($path)
     {
-        return $this->helper->renderBasePath($path);
+        return $this->helper->getBasePath($path);
     }
 
     /**
