@@ -5,8 +5,7 @@ namespace FM\TinyMCEBundle\Tests;
 use FM\TinyMCEBundle\FMTinyMCEBundle;
 
 /**
- * Class FMTinyMCEBundleTest
- * @package FM\TinyMCEBundle\Tests
+ * Class FMTinyMCEBundleTest.
  */
 class FMTinyMCEBundleTest extends \PHPUnit_Framework_TestCase
 {
@@ -16,7 +15,6 @@ class FMTinyMCEBundleTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Symfony\Component\HttpKernel\Bundle\Bundle', $bundle);
     }
-
 
     public function testCompilerPasses()
     {
