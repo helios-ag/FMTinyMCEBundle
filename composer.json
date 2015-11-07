@@ -17,14 +17,14 @@
     }
   ],
   "require": {
-    "php":                           ">=5.3.3",
+    "php":                           ">=5.3.9",
     "symfony/form":                  "~2.7",
     "symfony/framework-bundle":      "~2.7",
     "symfony/twig-bundle":           "~2.7"
   },
   "require-dev" : {
     "symfony/form": "~2.7",
-    "phpunit/phpunit": "~5.0",
+    "phpunit/phpunit": "~4.0",
     "symfony/yaml": "^2.0.5",
     "twig/twig": "~1.12"
   },
