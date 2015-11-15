@@ -138,6 +138,6 @@ class Configuration implements ConfigurationInterface
      */
     private function getDefaultMenubar()
     {
-        return '"file edit insert view format table tools"';
+        return 'file edit insert view format table tools';
     }
 }
