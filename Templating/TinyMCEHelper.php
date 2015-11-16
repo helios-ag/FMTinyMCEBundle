@@ -104,7 +104,7 @@ class TinyMCEHelper extends Helper
      */
     protected function fixConfigLanguage($instance = 'default')
     {
-        $locale = 'en';
+        $locale = 'en_US';
         if (isset($this->parameters[$instance]['language'])) {
             $locale = strtolower(str_replace('-', '_', $this->parameters[$instance]['language']));
         }
