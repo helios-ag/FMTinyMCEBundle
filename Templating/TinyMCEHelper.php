@@ -174,7 +174,7 @@ class TinyMCEHelper extends Helper
      *
      * @return string
      */
-    public function getgit s($instance = 'default')
+    public function getPlugins($instance = 'default')
     {
         $plugins = $this->parameters[$instance]['plugins'];
 
