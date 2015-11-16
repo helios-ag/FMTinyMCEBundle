@@ -9,6 +9,9 @@ use Symfony\Component\Templating\Helper\Helper;
 
 /**
  * Class TinyMCEHelper.
+ * @author Al Ganiev <helios.ag@gmail.com>
+ * @copyright 2015- Al Ganiev
+ * @license http://www.opensource.org/licenses/mit-license.php MIT License
  */
 class TinyMCEHelper extends Helper
 {
@@ -101,7 +104,7 @@ class TinyMCEHelper extends Helper
      */
     protected function fixConfigLanguage($instance = 'default')
     {
-        $locale = 'en';
+        $locale = 'en_US';
         if (isset($this->parameters[$instance]['language'])) {
             $locale = strtolower(str_replace('-', '_', $this->parameters[$instance]['language']));
         }
