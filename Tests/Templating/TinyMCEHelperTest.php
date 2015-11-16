@@ -139,7 +139,7 @@ class TinyMCEHelperTest extends \PHPUnit_Framework_TestCase
 
     public function testGetLanguage()
     {
-        $this->assertSame('language: "en_US",', $this->helper->getLanguage());
+        $this->assertSame('language: "en_us",', $this->helper->getLanguage());
     }
 
     public function testGetToolbars()
