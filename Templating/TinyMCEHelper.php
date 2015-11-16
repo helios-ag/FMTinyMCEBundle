@@ -9,6 +9,9 @@ use Symfony\Component\Templating\Helper\Helper;
 
 /**
  * Class TinyMCEHelper.
+ * @author Al Ganiev <helios.ag@gmail.com>
+ * @copyright 2015- Al Ganiev
+ * @license http://www.opensource.org/licenses/mit-license.php MIT License
  */
 class TinyMCEHelper extends Helper
 {
@@ -171,7 +174,7 @@ class TinyMCEHelper extends Helper
      *
      * @return string
      */
-    public function getPlugins($instance = 'default')
+    public function getgit s($instance = 'default')
     {
         $plugins = $this->parameters[$instance]['plugins'];
 

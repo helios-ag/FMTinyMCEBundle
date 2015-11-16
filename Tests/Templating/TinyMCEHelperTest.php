@@ -132,7 +132,6 @@ class TinyMCEHelperTest extends \PHPUnit_Framework_TestCase
         $this->routerMock
             ->expects($this->once())
             ->method('generate')
-//            ->with($this->equalTo('foo'))
             ->will($this->returnValue('bar'));
 
         $this->assertSame('bar', $this->helper->getFileBrowserPathHelper());
@@ -140,7 +139,7 @@ class TinyMCEHelperTest extends \PHPUnit_Framework_TestCase
 
     public function testGetLanguage()
     {
-        $this->assertSame('language: "en",', $this->helper->getLanguage());
+        $this->assertSame('language: "en_US",', $this->helper->getLanguage());
     }
 
     public function testGetToolbars()
