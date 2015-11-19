@@ -208,7 +208,11 @@ class TinyMCEHelper extends Helper
      */
     public function getWidth($instance = 'default')
     {
-        return sprintf('width: %s,', $this->parameters[$instance]['width']);
+        $width = $this->parameters[$instance]['width'];
+
+        if($width == 'auto' || $width == 'false') return '';
+
+        return sprintf('width: %s,', $width);
     }
 
     /**
@@ -218,7 +222,11 @@ class TinyMCEHelper extends Helper
      */
     public function getHeight($instance = 'default')
     {
-        return sprintf('height: %s,', $this->parameters[$instance]['height']);
+        $height = $this->parameters[$instance]['height'];
+
+        if($height == 'auto' || $height == 'false') return '';
+
+        return sprintf('height: %s,', $height);
     }
 
     /**
