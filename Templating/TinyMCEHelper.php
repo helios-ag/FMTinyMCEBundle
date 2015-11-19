@@ -9,6 +9,7 @@ use Symfony\Component\Templating\Helper\Helper;
 
 /**
  * Class TinyMCEHelper.
+ *
  * @author Al Ganiev <helios.ag@gmail.com>
  * @copyright 2015- Al Ganiev
  * @license http://www.opensource.org/licenses/mit-license.php MIT License
@@ -210,7 +211,9 @@ class TinyMCEHelper extends Helper
     {
         $width = $this->parameters[$instance]['width'];
 
-        if($width == 'auto' || $width == 'false') return '';
+        if ($width == 'auto' || $width == 'false') {
+            return '';
+        }
 
         return sprintf('width: %s,', $width);
     }
@@ -224,7 +227,9 @@ class TinyMCEHelper extends Helper
     {
         $height = $this->parameters[$instance]['height'];
 
-        if($height == 'auto' || $height == 'false') return '';
+        if ($height == 'auto' || $height == 'false') {
+            return '';
+        }
 
         return sprintf('height: %s,', $height);
     }
