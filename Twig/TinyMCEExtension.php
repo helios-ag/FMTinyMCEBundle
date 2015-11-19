@@ -6,6 +6,7 @@ use FM\TinyMCEBundle\Templating\TinyMCEHelper;
 
 /**
  * Class TinyMCEExtenion.
+ *
  * @author Al Ganiev <helios.ag@gmail.com>
  * @copyright 2015- Al Ganiev
  * @license http://www.opensource.org/licenses/mit-license.php MIT License
