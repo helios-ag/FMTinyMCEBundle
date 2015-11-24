@@ -95,9 +95,7 @@ class Configuration implements ConfigurationInterface
     {
         return $this->createNode('toolbars')
             ->useAttributeAsKey('name')
-                ->prototype('array')
-                ->useAttributeAsKey('name')
-                ->prototype('scalar')->end()
+                ->prototype('scalar')
             ->end();
     }
 
