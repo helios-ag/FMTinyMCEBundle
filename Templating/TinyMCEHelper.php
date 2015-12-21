@@ -179,7 +179,7 @@ class TinyMCEHelper extends Helper
     {
         $plugins = $this->parameters[$instance]['plugins'];
 
-        return sprintf('plugins: [%s],', $plugins);
+        return sprintf('plugins: ["%s"],', $plugins);
     }
 
     /**
