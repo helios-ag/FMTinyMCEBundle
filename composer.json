@@ -21,10 +21,25 @@
     "symfony/framework-bundle":            "~2.8|~3.0|~4.0",
     "symfony/twig-bundle":                 "~2.8|~3.0|~4.0",
     "symfony/form":                        "~2.8|~3.0|~4.0",
+    "tinymce/tinymce":                     "~4",
+    "slowprog/composer-copy-file":         "~0.2"
   },
   "require-dev" : {
     "phpunit/phpunit": "~5.0",
     "satooshi/php-coveralls": "~1"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "SlowProg\\CopyFile\\ScriptHandler::copy"
+    ],
+    "post-update-cmd": [
+      "SlowProg\\CopyFile\\ScriptHandler::copy"
+    ]
+  },
+  "extra": {
+    "copy-file": {
+      "vendor/tinymce/": "web/assets/"
+    }
   },
   "suggest": {
     "helios-ag/fm-elfinder-bundle": "FMElfinderBundle which allow to manage uploaded files"
