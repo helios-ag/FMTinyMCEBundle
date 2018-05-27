@@ -59,7 +59,7 @@ class TinyMCETypeTest extends TypeTestCase
 
     public function testEnableWithDefaultValue()
     {
-        $form = $this->factory->create(FM\TinyMCEBundle\Form\Type\TinyMCEType::class, null, array('instance' => 'default'));
+        $form = $this->factory->create(\FM\TinyMCEBundle\Form\Type\TinyMCEType::class, null, array('instance' => 'default'));
         $view = $form->createView();
         $this->assertArrayHasKey('enable', $view->vars);
         $this->assertTrue($view->vars['enable']);
