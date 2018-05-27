@@ -47,7 +47,7 @@ Recommended bundles to use with:
 ### Step 1: Installation
 
 ```sh
-    composer require helios-ag/fm-tinymce-bundle
+composer require helios-ag/fm-tinymce-bundle
 ```
 
 Now tell composer to download the bundle by running the command:
@@ -151,7 +151,7 @@ fm_tinymce:
             height:               300
             theme:                modern
             toolbar_item_size:    small
-            menubar:              '"file edit insert view format table tools"'
+            menubar:              file edit insert view format table tools
             image_advtab:         false
             templates:
                 templates:
@@ -161,7 +161,7 @@ fm_tinymce:
             relative_urls:        false
             convert_urls:         false
             toolbars:
-                toolbar1:         "undo redo | styleselect | bold italic | link image"
+                toolbar1:         undo redo | styleselect | bold italic | link image
             filebrowser_type:     fm_elfinder
             file_picker_callback: elFinderBrowser
             filebrowser:
