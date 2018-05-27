@@ -24,7 +24,7 @@
   },
   "require-dev" : {
     "phpunit/phpunit": "~5.0",
-    "satooshi/php-coveralls": "dev-master"
+    "satooshi/php-coveralls": "~1"
   },
   "suggest": {
     "helios-ag/fm-elfinder-bundle": "FMElfinderBundle which allow to manage uploaded files"
