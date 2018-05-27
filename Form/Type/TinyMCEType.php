@@ -50,7 +50,7 @@ class TinyMCEType extends AbstractType
      */
     public function isEnabled($enable = true)
     {
-        if ($enable !== null) {
+        if (null !== $enable) {
             $this->enable = (bool) $enable;
         }
 
@@ -59,7 +59,7 @@ class TinyMCEType extends AbstractType
 
     public function isInline($inline = null)
     {
-        if ($inline !== null) {
+        if (null !== $inline) {
             $this->inline = (bool) $inline;
         }
 
@@ -129,7 +129,6 @@ class TinyMCEType extends AbstractType
             'base_path'   => 'string',
             'js_path'     => 'string',
             'instance'    => 'string',
-
         );
         if (Kernel::VERSION_ID >= 20600) {
             foreach ($allowedTypesMap as $option => $allowedTypes) {
