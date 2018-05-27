@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
  * Class FMTinyMCEExtension.
  *
  * @author Al Ganiev <helios.ag@gmail.com>
- * @copyright 2015- Al Ganiev
+ * @copyright 2015-2018 Al Ganiev
  * @license http://www.opensource.org/licenses/mit-license.php MIT License
  */
 class FMTinyMCEExtension extends Extension

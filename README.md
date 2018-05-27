@@ -1,11 +1,9 @@
 FMTinyMCEBundle
 ================
 
-[TinyMCE](https://github.com/tinymce/tinymce) integration in Symfony2
+[TinyMCE](https://github.com/tinymce/tinymce) integration in Symfony 2/3/4
 
-Please note, bundle is in early stage of development, many things will change.
 The purpose of bundle is to provide seamless integration between elFinder and TinyMCE editor.
-Inspired by IvoryCKEditorBundle
 
 ### Code Quality Assurance ###
 
@@ -23,11 +21,6 @@ Inspired by IvoryCKEditorBundle
 
 TinyMCE enables you to convert HTML TEXTAREA fields or other HTML elements to editor instances.
 
-Recommended bundles to use with:
-
-* [FMElfinderBundle](https://github.com/helios-ag/FMElFinderBundle/)
-
-<!-- -->
 
 **Table of contents**
 
@@ -50,13 +43,6 @@ Recommended bundles to use with:
 composer require helios-ag/fm-tinymce-bundle
 ```
 
-Now tell composer to download the bundle by running the command:
-
-
-```sh
-composer update helios-ag/fm-tinymce-bundle
-```
-
 ### Step 2: Enable the bundle
 
 Enable the bundle in the kernel:
@@ -76,11 +62,7 @@ public function registerBundles()
 
 ### Step 3: Install assets
 
-Install and dump assets via symfony built-in command:
-
-```sh
-app/console assets:install web
-```
+By default TinyMCE assets copied to `web/assets` directory
 
 ## Basic configuration
 
@@ -142,8 +124,8 @@ Full configuration reference example
 fm_tinymce:
     enable:               true
     inline:               false
-    base_path:            bundles/fmtinymce/
-    js_path:              bundles/fmtinymce/tinymce.min.js
+    base_path:            assets/tinymce/
+    js_path:              assets/tinymce/tinymce.min.js
     instances:
         default:
             language:             en_US

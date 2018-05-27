@@ -32,7 +32,7 @@ class TinyMCEHelperTest extends \PHPUnit_Framework_TestCase
                 ->disableOriginalConstructor()
                 ->getMock();
         }
-        $this->routerMock = $this->getMock('Symfony\Component\Routing\RouterInterface');
+        $this->routerMock = $this->getMockBuilder('Symfony\Component\Routing\RouterInterface')->getMock();
 
         $parser       = new Parser();
         $params       = $parser->parse(file_get_contents(__DIR__.'/../Fixtures/config/DI/default.yml'));
