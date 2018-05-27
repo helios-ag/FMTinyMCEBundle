@@ -39,7 +39,7 @@ class TinyMCEExtensionTest extends \PHPUnit_Framework_TestCase
                 ->getMock();
         }
 
-        $this->routerMock = $this->getMock('Symfony\Component\Routing\RouterInterface');
+        $this->routerMock = $this->getMockBuilder('Symfony\Component\Routing\RouterInterface')->getMock();
         $this->container  = new ContainerBuilder();
 
         $this->container->set('assets.packages', $this->assetsHelperMock);
