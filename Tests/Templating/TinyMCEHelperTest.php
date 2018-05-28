@@ -13,8 +13,10 @@ class TinyMCEHelperTest extends \PHPUnit_Framework_TestCase
 {
     /** @var \FM\TinyMCEBundle\Templating\TinyMCEHelper */
     private $helper;
+
     /** @var \Symfony\Component\Asset\Packages|\Symfony\Component\Templating\Helper\CoreAssetsHelper|\PHPUnit_Framework_MockObject_MockObject */
     private $assetsHelperMock;
+
     /** @var \Symfony\Component\Routing\RouterInterface|\PHPUnit_Framework_MockObject_MockObject */
     private $routerMock;
 
@@ -67,7 +69,7 @@ class TinyMCEHelperTest extends \PHPUnit_Framework_TestCase
     /**
      * Gets the url.
      *
-     * @return array The url.
+     * @return array the url
      */
     public function pathProvider()
     {
@@ -80,7 +82,7 @@ class TinyMCEHelperTest extends \PHPUnit_Framework_TestCase
     /**
      * Gets the language.
      *
-     * @return array The language.
+     * @return array the language
      */
     public function languageProvider()
     {
