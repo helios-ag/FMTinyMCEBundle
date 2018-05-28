@@ -1,6 +1,6 @@
 {
   "name": "helios-ag/fm-tinymce-bundle",
-  "description": "TinyMCE bundle, adds TinyMCE editor to your Symfony2 project",
+  "description": "TinyMCE bundle, adds TinyMCE editor to your Symfony2/3/4 project",
   "keywords": ["elfinder","file manager"],
   "type": "symfony-bundle",
   "homepage": "https://github.com/helios-ag/FMTinyMCEBundle",
