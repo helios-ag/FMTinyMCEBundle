@@ -21,7 +21,7 @@
                     {{ tinymce_file_picker_callback(instance) }}
                 });
                 {% if tinymce_filebrowser_type(instance) == 'fm_elfinder' %}
-                    {% include 'FMTinyMCEBundle::elfinder_helper.html.twig' %}
+                    {% include '@FMTinyMCEBundle/elfinder_helper.html.twig' %}
                 {% endif %}
         </script>
 

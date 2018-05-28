@@ -36,12 +36,12 @@ class TinyMCEType extends AbstractType
     /**
      * @var string
      */
-    private $basePath = 'bundles/fmtinymce/';
+    private $basePath = 'assets/tinymce/';
 
     /**
      * @var string
      */
-    private $jsPath = 'bundle/fmtinymce/tinymce.min.js';
+    private $jsPath = 'assets/tinymce/tinymce.min.js';
 
     /**
      * @param bool $enable
@@ -149,17 +149,29 @@ class TinyMCEType extends AbstractType
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getParent()
     {
+        if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+            return 'Symfony\Component\Form\Extension\Core\Type\TextareaType';
+        }
+
         return 'textarea';
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getName()
+    {
+        return $this->getBlockPrefix();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
     {
         return 'tinymce';
     }
