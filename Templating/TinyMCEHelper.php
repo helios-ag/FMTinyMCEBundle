@@ -48,9 +48,9 @@ class TinyMCEHelper extends Helper
     /**
      * gets the js path.
      *
-     * @param string $jsPath The js path.
+     * @param string $jsPath the js path
      *
-     * @return string The rendered js path.
+     * @return string the rendered js path
      */
     public function getJsPath($jsPath)
     {
@@ -115,7 +115,7 @@ class TinyMCEHelper extends Helper
 
     private function fixPath($path)
     {
-        if (($position = strpos($path, '?')) !== false) {
+        if (false !== ($position = strpos($path, '?'))) {
             return substr($path, 0, $position);
         }
 
@@ -211,7 +211,7 @@ class TinyMCEHelper extends Helper
     {
         $width = $this->parameters[$instance]['width'];
 
-        if ($width == 'auto' || $width == 'false') {
+        if ('auto' == $width || 'false' == $width) {
             return '';
         }
 
@@ -227,7 +227,7 @@ class TinyMCEHelper extends Helper
     {
         $height = $this->parameters[$instance]['height'];
 
-        if ($height == 'auto' || $height == 'false') {
+        if ('auto' == $height || 'false' == $height) {
             return '';
         }
 

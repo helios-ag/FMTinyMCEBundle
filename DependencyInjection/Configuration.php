@@ -56,7 +56,9 @@ class Configuration implements ConfigurationInterface
                                 ->addDefaultsIfNotSet()
                                 ->beforeNormalization()
                                 ->ifString()
-                                    ->then(function ($v) { return array('url' => $v); })
+                                    ->then(function ($v) {
+                                        return array('url' => $v);
+                                    })
                                 ->end()
                                 ->children()
                                     ->scalarNode('url')->defaultNull()->end() //can be set via straight url
@@ -89,7 +91,7 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * @return \Symfony\Component\Config\Definition\Builder\NodeDefinition The toolbars node.
+     * @return \Symfony\Component\Config\Definition\Builder\NodeDefinition the toolbars node
      */
     private function createToolbarsNode()
     {
@@ -102,9 +104,9 @@ class Configuration implements ConfigurationInterface
     /**
      * Creates a node.
      *
-     * @param string $name The node name.
+     * @param string $name the node name
      *
-     * @return \Symfony\Component\Config\Definition\Builder\NodeDefinition The node.
+     * @return \Symfony\Component\Config\Definition\Builder\NodeDefinition the node
      */
     private function createNode($name)
     {
@@ -114,7 +116,7 @@ class Configuration implements ConfigurationInterface
     /**
      * Creates a tree builder.
      *
-     * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder The tree builder.
+     * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder the tree builder
      */
     private function createTreeBuilder()
     {
