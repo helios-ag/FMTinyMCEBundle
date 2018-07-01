@@ -1,11 +1,9 @@
 FMTinyMCEBundle
 ================
 
-[TinyMCE](https://github.com/tinymce/tinymce) integration in Symfony2
+[TinyMCE](https://github.com/tinymce/tinymce) integration in Symfony 2/3/4
 
-Please note, bundle is in early stage of development, many things will change.
 The purpose of bundle is to provide seamless integration between elFinder and TinyMCE editor.
-Inspired by IvoryCKEditorBundle
 
 ### Code Quality Assurance ###
 
@@ -23,38 +21,71 @@ Inspired by IvoryCKEditorBundle
 
 TinyMCE enables you to convert HTML TEXTAREA fields or other HTML elements to editor instances.
 
-Recommended bundles to use with:
-
-* [FMElfinderBundle](https://github.com/helios-ag/FMElFinderBundle/)
-
-<!-- -->
 
 **Table of contents**
 
 - [Installation](#installation)
     - [Step 1: Installation](#step-1-installation)
     - [Step 2: Enable the bundle](#step-2-enable-the-bundle)
-    - [Step 3: Import FMElfinderBundle routing file](#step-3-import-fmtinymcebundle-routing-file)
-    - [Step 4: Securing paths](#step-4-configure-your-applications-securityyml)
-    - [Step 5: Install assets](#step-5-install-assets)
 - [Basic configuration](#basic-configuration)
     - [Add configuration options to your config.yml](#add-configuration-options-to-your-configyml)
-    - [Use multiple upload folder by instance](#use-multiple-upload-folder-by-instance)
-
 
 ## Installation
 
 ### Step 1: Installation
 
-```sh
-composer require helios-ag/fm-tinymce-bundle
+Add FMTinyMCEBundle to your composer.json:
+
+```json
+{
+    "require": {
+        "helios-ag/fm-tinymce-bundle": "~1"
+    }
+}
 ```
+
+If you want to override default assets directory of Richfilemanager, add next option.
+By default assets copied to `web/assets/tinymce` or `public/assets/tinymce`
+depending on Symfony version
+
+```json
+{
+    "config": {
+        "tinymce-dir": "web/assets/"
+    }
+}
+```
+
+Add composer script
+
+`"FM\\TinyMCEBundle\\Composer\\TinyMCEcriptHandler::copy",`
+
+to scripts section of composer.json
+
+```json
+{
+  "scripts": {
+      "symfony-scripts": [
+          "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+          "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+          "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+          "FM\\TinyMCEBundle\\Composer\\TinyMCEcriptHandler::copy",
+          "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+          "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+          "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+      ]
+    }
+}
+```
+
+Also you can copy assets manually. Copy dirs: 'config, 'images', 'languages', 'libs', 'src',
+'themes' from `vendor/servocoder/richfilemanager/` to your public assets directory
 
 Now tell composer to download the bundle by running the command:
 
 
 ```sh
-composer update helios-ag/fm-tinymce-bundle
+composer update helios-ag/fm-rfm-bundle
 ```
 
 ### Step 2: Enable the bundle
@@ -62,6 +93,7 @@ composer update helios-ag/fm-tinymce-bundle
 Enable the bundle in the kernel:
 
 ```php
+
 <?php
 // app/AppKernel.php
 
@@ -74,13 +106,6 @@ public function registerBundles()
 }
 ```
 
-### Step 3: Install assets
-
-Install and dump assets via symfony built-in command:
-
-```sh
-app/console assets:install web
-```
 
 ## Basic configuration
 
@@ -142,8 +167,8 @@ Full configuration reference example
 fm_tinymce:
     enable:               true
     inline:               false
-    base_path:            bundles/fmtinymce/
-    js_path:              bundles/fmtinymce/tinymce.min.js
+    base_path:            assets/tinymce/
+    js_path:              assets/tinymce/tinymce.min.js
     instances:
         default:
             language:             en_US

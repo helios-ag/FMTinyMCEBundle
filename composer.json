@@ -1,7 +1,7 @@
 {
   "name": "helios-ag/fm-tinymce-bundle",
-  "description": "TinyMCE bundle, adds TinyMCE editor to your Symfony2 project",
-  "keywords": ["elfinder","file manager"],
+  "description": "TinyMCE bundle, adds TinyMCE editor to your Symfony project",
+  "keywords": ["tinymce", "wisywig", "file manager"],
   "type": "symfony-bundle",
   "homepage": "https://github.com/helios-ag/FMTinyMCEBundle",
   "license": "MIT",
@@ -16,20 +16,35 @@
       "homepage": "https://github.com/helios-ag/FMTinyMCEBundle/contributors"
     }
   ],
+  "archive": {
+    "exclude": ["/tests", "/.github"]
+  },
   "require": {
-    "php":                                 "^5.6|^7.0",
-    "symfony/framework-bundle":            "~2.8|~3.0|~4.0",
-    "symfony/twig-bundle":                 "~2.8|~3.0|~4.0",
-    "symfony/form":                        "~2.8|~3.0|~4.0"
+    "php":                                 "^7.1",
+    "symfony/framework-bundle":            "^3.4|^4.0",
+    "symfony/twig-bundle":                 "^3.4|^4.0",
+    "symfony/form":                        "^3.4|^4.0",
+    "tinymce/tinymce":                     "~4"
   },
   "require-dev" : {
-    "phpunit/phpunit": "~5.0",
-    "satooshi/php-coveralls": "~1"
+    "symfony/phpunit-bridge": "^4.0",
+    "matthiasnoback/symfony-config-test":  "^3.0",
+    "matthiasnoback/symfony-dependency-injection-test": "^2.0",
+    "symfony/finder": "^3.4|^4.0"
   },
   "suggest": {
-    "helios-ag/fm-elfinder-bundle": "FMElfinderBundle which allow to manage uploaded files"
+    "helios-ag/fm-elfinder-bundle": "Elfinder bundle, file manager",
+    "helios-ag/fm-rfm-bundle": "Richfilemanager bundle, file manager"
+  },
+  "extra": {
+    "branch-alias": {
+        "dev-master": "1.0-dev"
+    }
   },
   "autoload": {
-    "psr-4": { "FM\\TinyMCEBundle\\": "" }
+    "psr-4": { "FM\\TinyMCEBundle\\": "src/" }
+  },
+  "autoload-dev": {
+    "psr-4": { "FM\\TinyMCEBundle\\Tests": "tests/" }
   }
 }
