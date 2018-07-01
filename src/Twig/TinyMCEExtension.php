@@ -52,7 +52,6 @@ class TinyMCEExtension extends \Twig_Extension
             new \Twig_SimpleFunction('tinymce_menubar', array($this, 'renderMenubar'), $options),
             new \Twig_SimpleFunction('tinymce_templates', array($this, 'renderTemplates'), $options),
             new \Twig_SimpleFunction('tinymce_toolbar_items_size', array($this, 'renderToolbarItemSize'), $options),
-
         );
     }
 
