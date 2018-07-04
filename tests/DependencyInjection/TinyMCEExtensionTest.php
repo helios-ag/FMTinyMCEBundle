@@ -23,7 +23,7 @@ class TinyMCEExtensionTest extends AbstractExtensionTestCase
     public function testServices()
     {
         $this->load();
-        $this->assertContainerBuilderHasAlias('fm_tinymce.form.type');
+        $this->assertContainerBuilderHasService('fm_tinymce.form.type');
         $this->assertContainerBuilderHasService('fm_tinymce.templating.helper');
     }
 
