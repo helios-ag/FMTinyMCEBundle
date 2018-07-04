@@ -14,7 +14,7 @@ use FM\TinyMCEBundle\Tests\Fixtures\Extension\FrameworkExtension;
  * @author Al Ganiev <helios.ag@gmail.com>
  * Class TinyMCEExtensionTest
  */
-class TinyMCEExtensionTest extends \PHPUnit_Framework_TestCase
+class TinyMCEExtensionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ContainerBuilder

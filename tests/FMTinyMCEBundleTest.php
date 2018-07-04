@@ -7,7 +7,7 @@ use FM\TinyMCEBundle\FMTinyMCEBundle;
 /**
  * Class FMTinyMCEBundleTest.
  */
-class FMTinyMCEBundleTest extends \PHPUnit_Framework_TestCase
+class FMTinyMCEBundleTest extends \PHPUnit\Framework\TestCase
 {
     public function testIsBundle()
     {

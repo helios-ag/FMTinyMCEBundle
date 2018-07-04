@@ -9,7 +9,7 @@ use Symfony\Component\Yaml\Parser;
 /**
  * Class TinyMCEHelperTest.
  */
-class TinyMCEHelperTest extends \PHPUnit_Framework_TestCase
+class TinyMCEHelperTest extends \PHPUnit\Framework\TestCase
 {
     /** @var \FM\TinyMCEBundle\Templating\TinyMCEHelper */
     private $helper;
