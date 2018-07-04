@@ -13,31 +13,31 @@ use Symfony\Component\Yaml\Parser;
 class TinyMCEExtensionTest extends AbstractExtensionTestCase
 {
 
-  protected function getContainerExtensions()
-  {
-      return array(
-          new FMTinyMCEExtension(),
-      );
-  }
+    protected function getContainerExtensions()
+    {
+        return array(
+            new FMTinyMCEExtension(),
+        );
+    }
 
-public function testServices()
-{
-    $this->load();
-    $this->assertContainerBuilderHasAlias('fm_tinymce.form.type');
-    $this->assertContainerBuilderHasService('fm_tinymce.templating.helper');
-}
+    public function testServices()
+    {
+        $this->load();
+        $this->assertContainerBuilderHasAlias('fm_tinymce.form.type');
+        $this->assertContainerBuilderHasService('fm_tinymce.templating.helper');
+    }
 
-public function testMinimumConfiguration()
-{
-    $this->container = new ContainerBuilder();
-    $loader          = new FMTinyMCEExtension();
-    $loader->load(array($this->getMinimalConfiguration()), $this->container);
-    $this->assertTrue($this->container instanceof ContainerBuilder);
-}
+    public function testMinimumConfiguration()
+    {
+        $this->container = new ContainerBuilder();
+        $loader = new FMTinyMCEExtension();
+        $loader->load(array($this->getMinimalConfiguration()), $this->container);
+        $this->assertTrue($this->container instanceof ContainerBuilder);
+    }
 
-  protected function getMinimalConfiguration()
-  {
-      $yaml = <<<'EOF'
+    protected function getMinimalConfiguration()
+    {
+        $yaml = <<<'EOF'
 instances:
     first_instance:
         language: en_US
@@ -45,10 +45,9 @@ instances:
         height: 400
     my_advanced_configuration:
          locale: ru_RU
-  EOF;
-      $parser = new Parser();
+EOF;
+        $parser = new Parser();
 
-      return $parser->parse($yaml);
-  }
-
+        return $parser->parse($yaml);
+    }
 }
