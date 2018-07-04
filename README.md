@@ -78,14 +78,10 @@ to scripts section of composer.json
 }
 ```
 
-Also you can copy assets manually. Copy dirs: 'config, 'images', 'languages', 'libs', 'src',
-'themes' from `vendor/servocoder/richfilemanager/` to your public assets directory
-
 Now tell composer to download the bundle by running the command:
 
-
 ```sh
-composer update helios-ag/fm-rfm-bundle
+composer update helios-ag/fm-tinymce-bundle
 ```
 
 ### Step 2: Enable the bundle
