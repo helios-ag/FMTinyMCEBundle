@@ -8,11 +8,10 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Yaml\Parser;
 
 /**
- * Class TinyMCEExtensionTest
+ * Class TinyMCEExtensionTest.
  */
 class TinyMCEExtensionTest extends AbstractExtensionTestCase
 {
-
     protected function getContainerExtensions()
     {
         return array(
@@ -30,7 +29,7 @@ class TinyMCEExtensionTest extends AbstractExtensionTestCase
     public function testMinimumConfiguration()
     {
         $this->container = new ContainerBuilder();
-        $loader = new FMTinyMCEExtension();
+        $loader          = new FMTinyMCEExtension();
         $loader->load(array($this->getMinimalConfiguration()), $this->container);
         $this->assertTrue($this->container instanceof ContainerBuilder);
     }
