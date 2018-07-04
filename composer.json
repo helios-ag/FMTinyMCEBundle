@@ -29,8 +29,7 @@
   "require-dev" : {
     "symfony/phpunit-bridge": "^4.0",
     "matthiasnoback/symfony-config-test":  "^3.0",
-    "matthiasnoback/symfony-dependency-injection-test": "^2.0",
-    "symfony/finder": "^3.4|^4.0"
+    "matthiasnoback/symfony-dependency-injection-test": "^2.0"
   },
   "suggest": {
     "helios-ag/fm-elfinder-bundle": "Elfinder bundle, file manager",
@@ -45,6 +44,6 @@
     "psr-4": { "FM\\TinyMCEBundle\\": "src/" }
   },
   "autoload-dev": {
-    "psr-4": { "FM\\TinyMCEBundle\\Tests": "tests/" }
+    "psr-4": { "FM\\TinyMCEBundle\\Tests\\": "tests/" }
   }
 }
