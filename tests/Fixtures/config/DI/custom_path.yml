@@ -1,5 +1,0 @@
-fm_tinymce:
-    base_path: 'custom\path'
-    instances:
-        default:
-            menubar: 'ddd'

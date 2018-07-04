@@ -2,85 +2,53 @@
 
 namespace FM\TinyMCEBundle\Tests\DependencyInjection;
 
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use FM\TinyMCEBundle\DependencyInjection\FMTinyMCEExtension;
-use FM\TinyMCEBundle\Tests\Fixtures\Extension\FrameworkExtension;
+use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\Yaml\Parser;
 
 /**
- * @author GeLo <geloen.eric@gmail.com>
- * @author Adam Misiorny <adam.misiorny@gmail.com>
- * @author Al Ganiev <helios.ag@gmail.com>
  * Class TinyMCEExtensionTest
  */
-class TinyMCEExtensionTest extends \PHPUnit\Framework\TestCase
+class TinyMCEExtensionTest extends AbstractExtensionTestCase
 {
-    /**
-     * @var ContainerBuilder
-     */
-    private $container;
 
-    /** @var \Symfony\Component\Routing\RouterInterface|\PHPUnit_Framework_MockObject_MockObject */
-    private $routerMock;
+  protected function getContainerExtensions()
+  {
+      return array(
+          new FMTinyMCEExtension(),
+      );
+  }
 
-    /** @var \Symfony\Component\Asset\Packages|\Symfony\Component\Templating\Helper\CoreAssetsHelper|\PHPUnit_Framework_MockObject_MockObject */
-    private $assetsHelperMock;
+public function testServices()
+{
+    $this->load();
+    $this->assertContainerBuilderHasAlias('fm_tinymce.form.type');
+    $this->assertContainerBuilderHasService('fm_tinymce.templating.helper');
+}
 
-    protected function setUp()
-    {
-        if (class_exists('Symfony\Component\Asset\Packages')) {
-            $this->assetsHelperMock = $this->getMockBuilder('Symfony\Component\Asset\Packages')
-                ->disableOriginalConstructor()
-                ->getMock();
-        } else {
-            $this->assetsHelperMock = $this->getMockBuilder('Symfony\Component\Templating\Helper\CoreAssetsHelper')
-                ->disableOriginalConstructor()
-                ->getMock();
-        }
+public function testMinimumConfiguration()
+{
+    $this->container = new ContainerBuilder();
+    $loader          = new FMTinyMCEExtension();
+    $loader->load(array($this->getMinimalConfiguration()), $this->container);
+    $this->assertTrue($this->container instanceof ContainerBuilder);
+}
 
-        $this->routerMock = $this->getMockBuilder('Symfony\Component\Routing\RouterInterface')->getMock();
-        $this->container  = new ContainerBuilder();
+  protected function getMinimalConfiguration()
+  {
+      $yaml = <<<'EOF'
+instances:
+    first_instance:
+        language: en_US
+        width: 300
+        height: 400
+    my_advanced_configuration:
+         locale: ru_RU
+  EOF;
+      $parser = new Parser();
 
-        $this->container->set('assets.packages', $this->assetsHelperMock);
-        $this->container->set('router', $this->routerMock);
-        $this->container->registerExtension($framework = new FrameworkExtension());
-        $this->container->loadFromExtension($framework->getAlias());
-        $this->container->registerExtension($tinymce = new FMTinyMCEExtension());
-        $this->container->loadFromExtension($tinymce->getAlias());
-    }
+      return $parser->parse($yaml);
+  }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function tearDown()
-    {
-        unset($this->container);
-    }
-
-    public function testDefaultFormType()
-    {
-        $this->loadConfiguration($this->container, 'simple');
-        $this->container->compile();
-        /** @var \FM\TinyMCEBundle\Form\Type\TinyMCEType $type */
-        $type = $this->container->get('fm_tinymce.form.type');
-        $this->assertInstanceOf('FM\TinyMCEBundle\Form\Type\TinyMCEType', $type);
-    }
-
-    public function testTemplatingConfiguration()
-    {
-        $this->loadConfiguration($this->container, 'simple');
-        $this->container->compile();
-        $helper = $this->container->get('fm_tinymce.templating.helper');
-        $this->assertInstanceOf('FM\TinyMCEBundle\Templating\TinyMCEHelper', $helper);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function loadConfiguration(ContainerBuilder $container, $configuration)
-    {
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Fixtures/config/DI/'));
-        $loader->load($configuration.'.yml');
-    }
 }
