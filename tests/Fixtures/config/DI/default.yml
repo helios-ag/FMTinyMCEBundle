@@ -1,0 +1,23 @@
+fm_tinymce:
+    instances:
+        default:
+            language: en_US
+            width: 600
+            image_advtab: false
+            height: 300
+            convert_urls: false
+            relative_urls: false
+            menubar: "file"
+            filebrowser_type: fm_elfinder
+            file_picker_callback: elFinderBrowser
+            toolbar_item_size: "small"
+            theme: "modern"
+            filebrowser:
+                url: 'http://localhost.tld'
+                route: foo
+                route_parameters:
+                    foo: bar
+            plugins: "foo"
+            toolbars:
+              toolbar1: 'foo'
+              toolbar2: 'bar'

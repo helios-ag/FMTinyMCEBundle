@@ -44,7 +44,7 @@ instances:
         width: 300
         height: 400
     my_advanced_configuration:
-         locale: ru_RU
+        language: ru_RU
 EOF;
         $parser = new Parser();
 
