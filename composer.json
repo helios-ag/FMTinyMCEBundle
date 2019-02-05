@@ -24,7 +24,7 @@
     "symfony/framework-bundle":            "^3.4|^4.0",
     "symfony/twig-bundle":                 "^3.4|^4.0",
     "symfony/form":                        "^3.4|^4.0",
-    "tinymce/tinymce":                     "~4"
+    "tinymce/tinymce":                     "~5"
   },
   "require-dev" : {
     "symfony/phpunit-bridge": "^4.0",
