@@ -1,7 +1,7 @@
 FMTinyMCEBundle
 ================
 
-[TinyMCE](https://github.com/tinymce/tinymce) integration in Symfony 2/3/4
+[TinyMCE](https://github.com/tinymce/tinymce) integration in Symfony
 
 The purpose of bundle is to provide seamless integration between elFinder and TinyMCE editor.
 
@@ -58,7 +58,7 @@ depending on Symfony version
 
 Add composer script
 
-`"FM\\TinyMCEBundle\\Composer\\TinyMCEcriptHandler::copy",`
+`"FM\\TinyMCEBundle\\Composer\\TinyMCEScriptHandler::copy",`
 
 to scripts section of composer.json
 
