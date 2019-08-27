@@ -23,7 +23,7 @@
     "php":                                 "^7.1",
     "symfony/framework-bundle":            "^3.4|^4.0",
     "symfony/twig-bundle":                 "^3.4|^4.0",
-    "symfony/form":                        "^3.4|^4.0",
+    "symfony/form":                        "^3.4.x-dev",
     "tinymce/tinymce":                     "~4"
   },
   "require-dev" : {
