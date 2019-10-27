@@ -36,8 +36,8 @@ class TinyMCEHelperTest extends \PHPUnit\Framework\TestCase
         }
         $this->routerMock = $this->getMockBuilder('Symfony\Component\Routing\RouterInterface')->getMock();
 
-        $parser       = new Parser();
-        $params       = $parser->parse(file_get_contents(__DIR__.'/../Fixtures/config/DI/default.yml'));
+        $parser = new Parser();
+        $params = $parser->parse(file_get_contents(__DIR__.'/../Fixtures/config/DI/default.yml'));
         $this->helper = new TinyMCEHelper($params['fm_tinymce']['instances'], $this->routerMock, $this->assetsHelperMock);
     }
 
@@ -55,7 +55,7 @@ class TinyMCEHelperTest extends \PHPUnit\Framework\TestCase
     public function paramsProvider()
     {
         $parser = new Parser();
-        $data   = array();
+        $data = [];
 
         foreach (new DirectoryIterator(__DIR__.'/../Fixtures/config/DI/') as $file) {
             if ($file->isFile()) {
@@ -73,10 +73,10 @@ class TinyMCEHelperTest extends \PHPUnit\Framework\TestCase
      */
     public function pathProvider()
     {
-        return array(
-            array('path', 'url', 'url'),
-            array('path', 'url?v=2', 'url'),
-        );
+        return [
+            ['path', 'url', 'url'],
+            ['path', 'url?v=2', 'url'],
+        ];
     }
 
     /**
@@ -86,10 +86,10 @@ class TinyMCEHelperTest extends \PHPUnit\Framework\TestCase
      */
     public function languageProvider()
     {
-        return array(
-            array('ru', 'ru'),
-            array('en_US', 'en-us'),
-        );
+        return [
+            ['ru', 'ru'],
+            ['en_US', 'en-us'],
+        ];
     }
 
     /**
@@ -105,7 +105,7 @@ class TinyMCEHelperTest extends \PHPUnit\Framework\TestCase
             ->expects($this->once())
             ->method('getUrl')
             ->with($this->equalTo($path))
-            ->will($this->returnValue($asset));
+            ->willReturn($asset);
 
         $this->assertSame($url, $this->helper->getBasePath($path));
     }
@@ -116,7 +116,7 @@ class TinyMCEHelperTest extends \PHPUnit\Framework\TestCase
             ->expects($this->once())
             ->method('getUrl')
             ->with($this->equalTo('foo'))
-            ->will($this->returnValue('bar'));
+            ->willReturn('bar');
 
         $this->assertSame('bar', $this->helper->getJsPath('foo'));
     }
@@ -134,7 +134,7 @@ class TinyMCEHelperTest extends \PHPUnit\Framework\TestCase
         $this->routerMock
             ->expects($this->once())
             ->method('generate')
-            ->will($this->returnValue('bar'));
+            ->willReturn('bar');
 
         $this->assertSame('bar', $this->helper->getFileBrowserPathHelper());
     }

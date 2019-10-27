@@ -13,14 +13,14 @@ class TwigFormPassTest extends \PHPUnit\Framework\TestCase
     public function testProcess()
     {
         $container = new ContainerBuilder();
-        $pass      = new TwigFormPass();
+        $pass = new TwigFormPass();
         $pass->process($container);
         $this->assertFalse($container->hasParameter('twig.form.resources'));
         $container = new ContainerBuilder();
-        $container->setParameter('twig.form.resources', array());
+        $container->setParameter('twig.form.resources', []);
         $pass->process($container);
-        $this->assertEquals(array(
+        $this->assertEquals([
             'FMTinyMCEBundle:Form:tinymce_widget.html.twig',
-        ), $container->getParameter('twig.form.resources'));
+        ], $container->getParameter('twig.form.resources'));
     }
 }

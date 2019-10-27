@@ -40,9 +40,9 @@ class TinyMCEHelper extends Helper
      */
     public function __construct($parameters, RouterInterface $router, Packages $assetsHelper)
     {
-        $this->router       = $router;
+        $this->router = $router;
         $this->assetsHelper = $assetsHelper;
-        $this->parameters   = $parameters;
+        $this->parameters = $parameters;
     }
 
     /**
@@ -140,7 +140,7 @@ class TinyMCEHelper extends Helper
     public function getToolbars($instance = 'default')
     {
         $toolbarsString = '';
-        $toolbars       = $this->parameters[$instance]['toolbars'];
+        $toolbars = $this->parameters[$instance]['toolbars'];
         foreach ($toolbars as $toolbarName => $toolbar) {
             $toolbarsString .= sprintf(
                 '%s: "%s",',
@@ -190,8 +190,8 @@ class TinyMCEHelper extends Helper
     public function getTemplates($instance = 'default')
     {
         $templateString = '';
-        $templates      = array();
-        if (array_key_exists('templates', $this->parameters[$instance])) {
+        $templates = [];
+        if (\array_key_exists('templates', $this->parameters[$instance])) {
             $templates = $this->parameters[$instance]['templates'];
         }
 

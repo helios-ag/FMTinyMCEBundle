@@ -4,10 +4,10 @@ namespace FM\TinyMCEBundle\Composer;
 
 use Composer\Script\CommandEvent;
 use Composer\Script\Event;
-use Symfony\Component\Finder\Finder;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Filesystem\Exception\IOException;
 use Sensio\Bundle\DistributionBundle\Composer\ScriptHandler;
+use Symfony\Component\Filesystem\Exception\IOException;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 
 class TinyMCEScriptHandler extends ScriptHandler
 {
@@ -18,7 +18,7 @@ class TinyMCEScriptHandler extends ScriptHandler
      */
     public static function copy(Event $event)
     {
-        $extras  = $event->getComposer()->getPackage()->getExtra();
+        $extras = $event->getComposer()->getPackage()->getExtra();
         $version = \Symfony\Component\HttpKernel\Kernel::MAJOR_VERSION;
 
         $baseDir = 'vendor/tinymce/';
@@ -32,8 +32,8 @@ class TinyMCEScriptHandler extends ScriptHandler
         $fs = new Filesystem();
         $io = $event->getIO();
         foreach ($dirsToCopy as $dir) {
-            $from         = $baseDir.$dir;
-            $to           = $destinationDir.$dir;
+            $from = $baseDir.$dir;
+            $to = $destinationDir.$dir;
             $isRenameFile = '/' != substr($to, -1) && !is_dir($from);
             if (file_exists($to) && !is_dir($to) && !$isRenameFile) {
                 throw new \InvalidArgumentException('Destination directory is not a directory.');
@@ -41,7 +41,7 @@ class TinyMCEScriptHandler extends ScriptHandler
 
             try {
                 if ($isRenameFile) {
-                    $fs->mkdir(dirname($to));
+                    $fs->mkdir(\dirname($to));
                 } else {
                     $fs->mkdir($to);
                 }

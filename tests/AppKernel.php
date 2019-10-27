@@ -2,8 +2,8 @@
 
 namespace FM\TinyMCEBundle\Tests;
 
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * Class AppKernel.
@@ -17,11 +17,11 @@ class AppKernel extends Kernel
 
     public function registerBundles()
     {
-        $bundles = array(
+        $bundles = [
             new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new \Symfony\Bundle\TwigBundle\TwigBundle(),
             new \FM\TinyMCEBundle\FMTinyMCEBundle(),
-        );
+        ];
 
         return $bundles;
     }

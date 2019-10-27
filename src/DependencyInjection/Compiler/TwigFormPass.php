@@ -2,8 +2,8 @@
 
 namespace FM\TinyMCEBundle\DependencyInjection\Compiler;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * Class TwigFormPass.
@@ -21,7 +21,7 @@ class TwigFormPass implements CompilerPassInterface
         }
 
         $container->setParameter('twig.form.resources', array_merge(
-            array('FMTinyMCEBundle:Form:tinymce_widget.html.twig'),
+            ['FMTinyMCEBundle:Form:tinymce_widget.html.twig'],
             $container->getParameter('twig.form.resources')
         ));
     }

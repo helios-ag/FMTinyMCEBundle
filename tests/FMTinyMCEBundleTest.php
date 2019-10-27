@@ -20,13 +20,13 @@ class FMTinyMCEBundleTest extends \PHPUnit\Framework\TestCase
     {
         $containerBuilder = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')
             ->disableOriginalConstructor()
-            ->setMethods(array('addCompilerPass'))
+            ->setMethods(['addCompilerPass'])
             ->getMock();
         $containerBuilder
             ->expects($this->at(0))
             ->method('addCompilerPass')
             ->with($this->isInstanceOf('FM\TinyMCEBundle\DependencyInjection\Compiler\TwigFormPass'))
-            ->will($this->returnSelf());
+            ->willReturnSelf();
         $bundle = new FMTinyMCEBundle();
         $bundle->build($containerBuilder);
     }

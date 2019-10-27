@@ -2,8 +2,8 @@
 
 namespace FM\TinyMCEBundle\Tests\Form\Type;
 
-use FM\TinyMCEBundle\Tests\AppKernel;
 use FM\TinyMCEBundle\Form\Type\TinyMCEType;
+use FM\TinyMCEBundle\Tests\AppKernel;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\Test\TypeTestCase;
 
@@ -40,7 +40,7 @@ class TinyMCETypeTest extends TypeTestCase
     protected function setUp()
     {
         parent::setUp();
-        $params            = self::$kernel->getContainer()->get('service_container')->getParameter('fm_tinymce');
+        $params = self::$kernel->getContainer()->get('service_container')->getParameter('fm_tinymce');
         $this->tinyMCEtype = new TinyMCEType($params);
 
         $this->factory = Forms::createFormFactoryBuilder()
@@ -59,7 +59,7 @@ class TinyMCETypeTest extends TypeTestCase
 
     public function testEnableWithDefaultValue()
     {
-        $form = $this->factory->create(\FM\TinyMCEBundle\Form\Type\TinyMCEType::class, null, array('instance' => 'default'));
+        $form = $this->factory->create(\FM\TinyMCEBundle\Form\Type\TinyMCEType::class, null, ['instance' => 'default']);
         $view = $form->createView();
         $this->assertArrayHasKey('enable', $view->vars);
         $this->assertTrue($view->vars['enable']);
@@ -67,7 +67,7 @@ class TinyMCETypeTest extends TypeTestCase
 
     public function testBasePathDefaultValue()
     {
-        $form = $this->factory->create(\FM\TinyMCEBundle\Form\Type\TinyMCEType::class, null, array('instance' => 'default'));
+        $form = $this->factory->create(\FM\TinyMCEBundle\Form\Type\TinyMCEType::class, null, ['instance' => 'default']);
         $view = $form->createView();
         $this->assertArrayHasKey('base_path', $view->vars);
         $this->assertSame('assets/tinymce/', $view->vars['base_path']);

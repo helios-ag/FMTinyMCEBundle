@@ -4,8 +4,8 @@ namespace FM\TinyMCEBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -71,11 +71,11 @@ class TinyMCEType extends AbstractType
      *
      * @param array $parameters
      */
-    public function __construct(array $parameters = array())
+    public function __construct(array $parameters = [])
     {
         $this->parameters = $parameters;
-        $this->inline     = $parameters['inline'];
-        $this->enable     = $parameters['enable'];
+        $this->inline = $parameters['inline'];
+        $this->enable = $parameters['enable'];
         $this->setBasePath($parameters['base_path']);
         $this->setJsPath($parameters['js_path']);
     }
@@ -103,9 +103,9 @@ class TinyMCEType extends AbstractType
         $view->vars['enable'] = $form->getConfig()->getAttribute('enable');
         if ($form->getConfig()->getAttribute('enable')) {
             $view->vars['base_path'] = $form->getConfig()->getAttribute('base_path');
-            $view->vars['inline']    = $form->getConfig()->getAttribute('inline');
-            $view->vars['js_path']   = $form->getConfig()->getAttribute('js_path');
-            $view->vars['instance']  = $form->getConfig()->getAttribute('instance');
+            $view->vars['inline'] = $form->getConfig()->getAttribute('inline');
+            $view->vars['js_path'] = $form->getConfig()->getAttribute('js_path');
+            $view->vars['instance'] = $form->getConfig()->getAttribute('instance');
         }
     }
 
@@ -115,21 +115,21 @@ class TinyMCEType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setDefaults(array(
-                'enable'      => $this->enable,
-                'inline'      => $this->inline,
-                'base_path'   => $this->basePath,
-                'js_path'     => $this->jsPath,
-                'instance'    => 'default',
-            ))
+            ->setDefaults([
+                'enable' => $this->enable,
+                'inline' => $this->inline,
+                'base_path' => $this->basePath,
+                'js_path' => $this->jsPath,
+                'instance' => 'default',
+            ])
         ;
-        $allowedTypesMap = array(
-            'enable'      => 'bool',
-            'inline'      => 'bool',
-            'base_path'   => 'string',
-            'js_path'     => 'string',
-            'instance'    => 'string',
-        );
+        $allowedTypesMap = [
+            'enable' => 'bool',
+            'inline' => 'bool',
+            'base_path' => 'string',
+            'js_path' => 'string',
+            'instance' => 'string',
+        ];
         if (Kernel::VERSION_ID >= 20600) {
             foreach ($allowedTypesMap as $option => $allowedTypes) {
                 $resolver->addAllowedTypes($option, $allowedTypes);

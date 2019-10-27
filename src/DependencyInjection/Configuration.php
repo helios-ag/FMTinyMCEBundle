@@ -23,7 +23,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('fm_tinymce');
+        $rootNode = $treeBuilder->root('fm_tinymce');
 
         $rootNode
             ->fixXmlConfig('instance')
@@ -57,13 +57,13 @@ class Configuration implements ConfigurationInterface
                                 ->beforeNormalization()
                                 ->ifString()
                                     ->then(function ($v) {
-                                        return array('url' => $v);
+                                        return ['url' => $v];
                                     })
                                 ->end()
                                 ->children()
                                     ->scalarNode('url')->defaultNull()->end() //can be set via straight url
                                     ->scalarNode('route')->defaultNull()->end() // or via route
-                                    ->variableNode('route_parameters')->defaultValue(array())->end()
+                                    ->variableNode('route_parameters')->defaultValue([])->end()
                                 ->end()
                             ->end()
                 ->end();

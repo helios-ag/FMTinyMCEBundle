@@ -2,10 +2,10 @@
 
 namespace FM\TinyMCEBundle;
 
-use FM\TinyMCEBundle\DependencyInjection\FMTinyMCEExtension;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 use FM\TinyMCEBundle\DependencyInjection\Compiler\TwigFormPass;
+use FM\TinyMCEBundle\DependencyInjection\FMTinyMCEExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * Class TinyMCEBundle.
