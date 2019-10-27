@@ -22,8 +22,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('fm_tinymce');
+        $treeBuilder = new TreeBuilder('fm_tinymce');
+        $rootNode = method_exists(TreeBuilder::class, 'getRootNode') ? $treeBuilder->getRootNode() : $treeBuilder->root('fm_tinymce');
 
         $rootNode
             ->fixXmlConfig('instance')
