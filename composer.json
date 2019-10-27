@@ -20,16 +20,16 @@
     "exclude": ["/tests", "/.github"]
   },
   "require": {
-    "php":                                 "^7.1",
-    "symfony/framework-bundle":            "^3.4|^4.0",
-    "symfony/twig-bundle":                 "^3.4|^4.0",
-    "symfony/form":                        "^3.4|^4.0",
+    "php":                                 "^7.1.3",
+    "symfony/framework-bundle":            "^4.2",
+    "symfony/twig-bundle":                 "^4.2",
+    "symfony/form":                        "^4.2",
     "tinymce/tinymce":                     "~4"
   },
   "require-dev" : {
-    "symfony/phpunit-bridge": "^4.0",
+    "symfony/phpunit-bridge": "^4.3.5|^5.0",
     "matthiasnoback/symfony-config-test":  "^3.0",
-    "matthiasnoback/symfony-dependency-injection-test": "^2.0"
+    "matthiasnoback/symfony-dependency-injection-test": "^2"
   },
   "suggest": {
     "helios-ag/fm-elfinder-bundle": "Elfinder bundle, file manager",
