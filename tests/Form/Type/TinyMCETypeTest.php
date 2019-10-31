@@ -37,7 +37,7 @@ class TinyMCETypeTest extends TypeTestCase
     /**
      * {@inheritdooc}.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $params = self::$kernel->getContainer()->get('service_container')->getParameter('fm_tinymce');

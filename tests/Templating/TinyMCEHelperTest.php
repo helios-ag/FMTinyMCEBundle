@@ -23,7 +23,7 @@ class TinyMCEHelperTest extends \PHPUnit\Framework\TestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         if (class_exists('Symfony\Component\Asset\Packages')) {
             $this->assetsHelperMock = $this->getMockBuilder('Symfony\Component\Asset\Packages')
