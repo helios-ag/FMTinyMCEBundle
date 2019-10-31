@@ -41,7 +41,7 @@ class TinyMCEHelperTest extends \PHPUnit\Framework\TestCase
         $this->helper = new TinyMCEHelper($params['fm_tinymce']['instances'], $this->routerMock, $this->assetsHelperMock);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->assetsHelperMock);
         unset($this->routerMock);
