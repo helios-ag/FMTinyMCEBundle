@@ -3,3 +3,4 @@
 /vendor
 /Tests/Fixtures/cache
 /Tests/Fixtures/logs
+.php_cs.cache

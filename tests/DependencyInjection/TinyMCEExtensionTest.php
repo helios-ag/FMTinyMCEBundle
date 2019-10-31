@@ -12,7 +12,7 @@ use Symfony\Component\Yaml\Parser;
  */
 class TinyMCEExtensionTest extends AbstractExtensionTestCase
 {
-    protected function getContainerExtensions()
+    protected function getContainerExtensions(): array
     {
         return [
             new FMTinyMCEExtension(),
