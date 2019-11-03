@@ -24,6 +24,7 @@
     "symfony/framework-bundle":            "^4.2",
     "symfony/twig-bundle":                 "^4.2",
     "symfony/templating":                  "^4.2",
+    "symfony/asset":                       "^4.2",
     "symfony/form":                        "^4.2",
     "tinymce/tinymce":                     "~4"
   },
