@@ -21,15 +21,17 @@
   },
   "require": {
     "php":                                 "^7.2",
-    "symfony/framework-bundle":            "^3.4 || ^4.1 || ^5.0",
-    "symfony/twig-bundle":                 "^3.4 || ^4.1 || ^5.0",
-    "symfony/form":                        "^3.4 || ^4.1 || ^5.0",
+    "symfony/framework-bundle":            "^3.4 || ^4.4 || ^5.0",
+    "symfony/twig-bundle":                 "^3.4 || ^4.4 || ^5.0",
+    "symfony/form":                        "^3.4 || ^4.4 || ^5.0",
     "tinymce/tinymce":                     "^4"
   },
   "require-dev" : {
-    "symfony/phpunit-bridge": "^5.0",
-    "matthiasnoback/symfony-config-test":  "^3.0",
-    "matthiasnoback/symfony-dependency-injection-test": "^2.0"
+    "symfony/phpunit-bridge": "^4.1 || ^5.0",
+    "matthiasnoback/symfony-config-test":  "^4.0",
+    "matthiasnoback/symfony-dependency-injection-test": "^4.1",
+    "php-coveralls/php-coveralls": "^2.0",
+    "phpunit/phpunit": "^8.5"
   },
   "suggest": {
     "helios-ag/fm-elfinder-bundle": "Elfinder bundle, file manager",
