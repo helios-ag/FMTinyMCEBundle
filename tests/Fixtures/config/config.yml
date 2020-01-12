@@ -1,7 +1,11 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    exception_controller: null
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+
+_errors:
+  resource: '@FrameworkBundle/Resources/config/routing/errors.xml'
 
 framework:
     secret:     'secret'
