@@ -3,6 +3,8 @@
 namespace FM\TinyMCEBundle\Twig;
 
 use FM\TinyMCEBundle\Templating\TinyMCEHelper;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
  * Class TinyMCEExtenion.
@@ -11,7 +13,7 @@ use FM\TinyMCEBundle\Templating\TinyMCEHelper;
  * @copyright 2015- Al Ganiev
  * @license http://www.opensource.org/licenses/mit-license.php MIT License
  */
-class TinyMCEExtension extends \Twig_Extension
+class TinyMCEExtension extends AbstractExtension
 {
     /**
      * @var TinyMCEHelper
@@ -36,22 +38,22 @@ class TinyMCEExtension extends \Twig_Extension
         $options = array('is_safe' => array('html'));
 
         return array(
-            new \Twig_SimpleFunction('tinymce_path', array($this, 'renderJsPath'), $options),
-            new \Twig_SimpleFunction('tinymce_file_picker_callback', array($this, 'renderFilePicker'), $options),
-            new \Twig_SimpleFunction('tinymce_filebrowser_path', array($this, 'renderFilebrowserPath'), $options),
-            new \Twig_SimpleFunction('tinymce_filebrowser_type', array($this, 'renderFileBrowserType'), $options),
-            new \Twig_SimpleFunction('tinymce_language', array($this, 'renderLanguage'), $options),
-            new \Twig_SimpleFunction('tinymce_relative_urls', array($this, 'renderRelativeUrls'), $options),
-            new \Twig_SimpleFunction('tinymce_convert_urls', array($this, 'renderConvertUrls'), $options),
-            new \Twig_SimpleFunction('tinymce_toolbars', array($this, 'renderToolbars'), $options),
-            new \Twig_SimpleFunction('tinymce_plugins', array($this, 'renderPlugins'), $options),
-            new \Twig_SimpleFunction('tinymce_theme', array($this, 'renderTheme'), $options),
-            new \Twig_SimpleFunction('tinymce_width', array($this, 'renderWidth'), $options),
-            new \Twig_SimpleFunction('tinymce_height', array($this, 'renderHeight'), $options),
-            new \Twig_SimpleFunction('tinymce_image_advtab', array($this, 'renderImgAdvTab'), $options),
-            new \Twig_SimpleFunction('tinymce_menubar', array($this, 'renderMenubar'), $options),
-            new \Twig_SimpleFunction('tinymce_templates', array($this, 'renderTemplates'), $options),
-            new \Twig_SimpleFunction('tinymce_toolbar_items_size', array($this, 'renderToolbarItemSize'), $options),
+            new TwigFunction('tinymce_path', array($this, 'renderJsPath'), $options),
+            new TwigFunction('tinymce_file_picker_callback', array($this, 'renderFilePicker'), $options),
+            new TwigFunction('tinymce_filebrowser_path', array($this, 'renderFilebrowserPath'), $options),
+            new TwigFunction('tinymce_filebrowser_type', array($this, 'renderFileBrowserType'), $options),
+            new TwigFunction('tinymce_language', array($this, 'renderLanguage'), $options),
+            new TwigFunction('tinymce_relative_urls', array($this, 'renderRelativeUrls'), $options),
+            new TwigFunction('tinymce_convert_urls', array($this, 'renderConvertUrls'), $options),
+            new TwigFunction('tinymce_toolbars', array($this, 'renderToolbars'), $options),
+            new TwigFunction('tinymce_plugins', array($this, 'renderPlugins'), $options),
+            new TwigFunction('tinymce_theme', array($this, 'renderTheme'), $options),
+            new TwigFunction('tinymce_width', array($this, 'renderWidth'), $options),
+            new TwigFunction('tinymce_height', array($this, 'renderHeight'), $options),
+            new TwigFunction('tinymce_image_advtab', array($this, 'renderImgAdvTab'), $options),
+            new TwigFunction('tinymce_menubar', array($this, 'renderMenubar'), $options),
+            new TwigFunction('tinymce_templates', array($this, 'renderTemplates'), $options),
+            new TwigFunction('tinymce_toolbar_items_size', array($this, 'renderToolbarItemSize'), $options),
         );
     }
 
@@ -198,7 +200,7 @@ class TinyMCEExtension extends \Twig_Extension
     /**
      * @param $instance
      *
-     * @return string
+     * @return array
      */
     public function renderToolbars($instance)
     {

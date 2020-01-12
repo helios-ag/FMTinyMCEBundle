@@ -24,6 +24,8 @@
     "symfony/framework-bundle":            "^3.4 || ^4.4 || ^5.0",
     "symfony/twig-bundle":                 "^3.4 || ^4.4 || ^5.0",
     "symfony/form":                        "^3.4 || ^4.4 || ^5.0",
+    "symfony/asset":                       "^3.4 || ^4.4 || ^5.0",
+    "symfony/templating":                  "^3.4 || ^4.4 || ^5.0",
     "tinymce/tinymce":                     "^4"
   },
   "require-dev" : {
