@@ -4,9 +4,6 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
 
-_errors:
-  resource: '@FrameworkBundle/Resources/config/routing/errors.xml'
-
 framework:
     secret:     'secret'
     router:     { resource: null }
