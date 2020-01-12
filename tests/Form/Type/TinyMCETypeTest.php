@@ -51,7 +51,7 @@ class TinyMCETypeTest extends TypeTestCase
     /**
      * {@inheritdoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->factory);
         unset($this->tinyMCEtype);
