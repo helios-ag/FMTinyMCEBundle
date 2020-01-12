@@ -21,13 +21,13 @@
   },
   "require": {
     "php":                                 "^7.1",
-    "symfony/framework-bundle":            "^3.4|^4.0",
-    "symfony/twig-bundle":                 "^3.4|^4.0",
-    "symfony/form":                        "^3.4|^4.0",
-    "tinymce/tinymce":                     "~4"
+    "symfony/framework-bundle":            "^3.4 || ^4.1",
+    "symfony/twig-bundle":                 "^3.4 || ^4.1",
+    "symfony/form":                        "^3.4 || ^4.1",
+    "tinymce/tinymce":                     "^4"
   },
   "require-dev" : {
-    "symfony/phpunit-bridge": "^4.0",
+    "symfony/phpunit-bridge": "^5.0",
     "matthiasnoback/symfony-config-test":  "^3.0",
     "matthiasnoback/symfony-dependency-injection-test": "^2.0"
   },
