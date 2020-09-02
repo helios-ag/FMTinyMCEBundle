@@ -101,7 +101,7 @@ class TinyMCEHelper extends Helper
     /**
      * @param string $instance
      *
-     * @return array
+     * @return string
      */
     protected function fixConfigLanguage($instance = 'default')
     {
@@ -135,7 +135,7 @@ class TinyMCEHelper extends Helper
     /**
      * @param $instance
      *
-     * @return array
+     * @return string
      */
     public function getToolbars($instance = 'default')
     {

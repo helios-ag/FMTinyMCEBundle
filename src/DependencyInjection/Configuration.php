@@ -2,6 +2,7 @@
 
 namespace FM\TinyMCEBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -22,8 +23,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('fm_tinymce');
+        $treeBuilder = new TreeBuilder('fm_tinymce');
+        $rootNode    = $treeBuilder->getRootNode();
 
         $rootNode
             ->fixXmlConfig('instance')
@@ -102,25 +103,14 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * Creates a node.
-     *
      * @param string $name the node name
      *
-     * @return \Symfony\Component\Config\Definition\Builder\NodeDefinition the node
+     * @return NodeDefinition the node
      */
     private function createNode($name)
     {
-        return $this->createTreeBuilder()->root($name);
-    }
-
-    /**
-     * Creates a tree builder.
-     *
-     * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder the tree builder
-     */
-    private function createTreeBuilder()
-    {
-        return new TreeBuilder();
+        $treeBuilder = new TreeBuilder($name);
+        return $treeBuilder->getRootNode();
     }
 
     /**

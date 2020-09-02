@@ -1,7 +1,12 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    exception_controller: null
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+
 framework:
     secret:     'secret'
-    router:     { resource: null }
-    templating: { engines: ['twig'] }
+    router:     { resource: null, utf8: true }
 
 fm_tinymce:
     instances:

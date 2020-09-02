@@ -12,7 +12,7 @@ use Symfony\Component\Yaml\Parser;
  */
 class TinyMCEExtensionTest extends AbstractExtensionTestCase
 {
-    protected function getContainerExtensions()
+    protected function getContainerExtensions(): array
     {
         return array(
             new FMTinyMCEExtension(),
@@ -34,7 +34,7 @@ class TinyMCEExtensionTest extends AbstractExtensionTestCase
         $this->assertTrue($this->container instanceof ContainerBuilder);
     }
 
-    protected function getMinimalConfiguration()
+    protected function getMinimalConfiguration(): array
     {
         $yaml = <<<'EOF'
 instances:

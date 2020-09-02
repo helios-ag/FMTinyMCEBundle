@@ -27,7 +27,7 @@ class TinyMCETypeTest extends TypeTestCase
      */
     private $tinyMCEtype;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$kernel = new AppKernel('dev', true);
         self::$kernel->boot();
@@ -37,7 +37,7 @@ class TinyMCETypeTest extends TypeTestCase
     /**
      * {@inheritdooc}.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $params            = self::$kernel->getContainer()->get('service_container')->getParameter('fm_tinymce');
@@ -51,7 +51,7 @@ class TinyMCETypeTest extends TypeTestCase
     /**
      * {@inheritdoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->factory);
         unset($this->tinyMCEtype);
