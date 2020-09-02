@@ -6,7 +6,7 @@ twig:
 
 framework:
     secret:     'secret'
-    router:     { resource: null }
+    router:     { resource: null, utf8: true }
 
 fm_tinymce:
     instances:
