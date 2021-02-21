@@ -9,7 +9,7 @@ The purpose of bundle is to provide seamless integration between elFinder and Ti
 
 | Travis CI | CoverAlls| License | StyleCI | Version Status |
 |-------------|-----------------|-----------------|-----------------|-----------------|
-|[![Build Status](https://secure.travis-ci.org/helios-ag/FMTinyMCEBundle.png)](http://travis-ci.org/helios-ag/FMTinyMCEBundle)|[![Coverage Status](https://coveralls.io/repos/helios-ag/FMTinyMCEBundle/badge.svg?branch=master&service=github)](https://coveralls.io/github/helios-ag/FMTinyMCEBundle?branch=master)|[![License](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/license.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle)|[![StyleCI](https://styleci.io/repos/44680984/shield)](https://styleci.io/repos/44680984)|[![Latest Stable Version](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/v/stable.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle) [![Latest Unstable Version](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/v/unstable.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle)
+|[![Build Status](https://travis-ci.com/helios-ag/FMTinyMCEBundle.svg?branch=master)](https://travis-ci.com/helios-ag/FMTinyMCEBundle)|[![Coverage Status](https://coveralls.io/repos/helios-ag/FMTinyMCEBundle/badge.svg?branch=master&service=github)](https://coveralls.io/github/helios-ag/FMTinyMCEBundle?branch=master)|[![License](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/license.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle)|[![StyleCI](https://styleci.io/repos/44680984/shield)](https://styleci.io/repos/44680984)|[![Latest Stable Version](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/v/stable.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle) [![Latest Unstable Version](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/v/unstable.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle)
 
 
 | Downloads |
@@ -45,7 +45,7 @@ Add FMTinyMCEBundle to your composer.json:
 ```
 
 If you want to override default assets directory of Richfilemanager, add next option.
-By default assets copied to `web/assets/tinymce` or `public/assets/tinymce`
+By default, assets copied to `web/assets/tinymce` or `public/assets/tinymce`
 depending on Symfony version
 
 ```json
@@ -78,7 +78,7 @@ to scripts section of composer.json
 }
 ```
 
-Now tell composer to download the bundle by running the command:
+Now tell the composer to download the bundle by running the command:
 
 ```sh
 composer update helios-ag/fm-tinymce-bundle
@@ -89,7 +89,6 @@ composer update helios-ag/fm-tinymce-bundle
 Enable the bundle in the kernel:
 
 ```php
-
 <?php
 // app/AppKernel.php
 

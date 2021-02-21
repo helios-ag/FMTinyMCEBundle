@@ -31,6 +31,9 @@ class TinyMCEScriptHandler extends ScriptHandler
 
         $fs = new Filesystem();
         $io = $event->getIO();
+
+        $dirsToCopy = new DirectoryIterator($baseDir);
+
         foreach ($dirsToCopy as $dir) {
             $from         = $baseDir.$dir;
             $to           = $destinationDir.$dir;
