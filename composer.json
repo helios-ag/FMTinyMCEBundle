@@ -21,7 +21,7 @@
   },
   "require": {
     "php":                                 "^7.2",
-    "symfony/framework-bundle":            "^3.4 || ^4.4 || ^5.0",
+    "symfony/framework-bundle":            "^4.4.x-dev",
     "symfony/twig-bundle":                 "^3.4 || ^4.4 || ^5.0",
     "symfony/form":                        "^3.4 || ^4.4 || ^5.0",
     "symfony/asset":                       "^3.4 || ^4.4 || ^5.0",
