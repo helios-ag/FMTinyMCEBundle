@@ -22,8 +22,6 @@ class TinyMCEExtension extends AbstractExtension
 
     /**
      * TinyMCEExtension constructor.
-     *
-     * @param TinyMCEHelper $helper
      */
     public function __construct(TinyMCEHelper $helper)
     {
@@ -35,26 +33,26 @@ class TinyMCEExtension extends AbstractExtension
      */
     public function getFunctions()
     {
-        $options = array('is_safe' => array('html'));
+        $options = ['is_safe' => ['html']];
 
-        return array(
-            new TwigFunction('tinymce_path', array($this, 'renderJsPath'), $options),
-            new TwigFunction('tinymce_file_picker_callback', array($this, 'renderFilePicker'), $options),
-            new TwigFunction('tinymce_filebrowser_path', array($this, 'renderFilebrowserPath'), $options),
-            new TwigFunction('tinymce_filebrowser_type', array($this, 'renderFileBrowserType'), $options),
-            new TwigFunction('tinymce_language', array($this, 'renderLanguage'), $options),
-            new TwigFunction('tinymce_relative_urls', array($this, 'renderRelativeUrls'), $options),
-            new TwigFunction('tinymce_convert_urls', array($this, 'renderConvertUrls'), $options),
-            new TwigFunction('tinymce_toolbars', array($this, 'renderToolbars'), $options),
-            new TwigFunction('tinymce_plugins', array($this, 'renderPlugins'), $options),
-            new TwigFunction('tinymce_theme', array($this, 'renderTheme'), $options),
-            new TwigFunction('tinymce_width', array($this, 'renderWidth'), $options),
-            new TwigFunction('tinymce_height', array($this, 'renderHeight'), $options),
-            new TwigFunction('tinymce_image_advtab', array($this, 'renderImgAdvTab'), $options),
-            new TwigFunction('tinymce_menubar', array($this, 'renderMenubar'), $options),
-            new TwigFunction('tinymce_templates', array($this, 'renderTemplates'), $options),
-            new TwigFunction('tinymce_toolbar_items_size', array($this, 'renderToolbarItemSize'), $options),
-        );
+        return [
+            new TwigFunction('tinymce_path', [$this, 'renderJsPath'], $options),
+            new TwigFunction('tinymce_file_picker_callback', [$this, 'renderFilePicker'], $options),
+            new TwigFunction('tinymce_filebrowser_path', [$this, 'renderFilebrowserPath'], $options),
+            new TwigFunction('tinymce_filebrowser_type', [$this, 'renderFileBrowserType'], $options),
+            new TwigFunction('tinymce_language', [$this, 'renderLanguage'], $options),
+            new TwigFunction('tinymce_relative_urls', [$this, 'renderRelativeUrls'], $options),
+            new TwigFunction('tinymce_convert_urls', [$this, 'renderConvertUrls'], $options),
+            new TwigFunction('tinymce_toolbars', [$this, 'renderToolbars'], $options),
+            new TwigFunction('tinymce_plugins', [$this, 'renderPlugins'], $options),
+            new TwigFunction('tinymce_theme', [$this, 'renderTheme'], $options),
+            new TwigFunction('tinymce_width', [$this, 'renderWidth'], $options),
+            new TwigFunction('tinymce_height', [$this, 'renderHeight'], $options),
+            new TwigFunction('tinymce_image_advtab', [$this, 'renderImgAdvTab'], $options),
+            new TwigFunction('tinymce_menubar', [$this, 'renderMenubar'], $options),
+            new TwigFunction('tinymce_templates', [$this, 'renderTemplates'], $options),
+            new TwigFunction('tinymce_toolbar_items_size', [$this, 'renderToolbarItemSize'], $options),
+        ];
     }
 
     /**

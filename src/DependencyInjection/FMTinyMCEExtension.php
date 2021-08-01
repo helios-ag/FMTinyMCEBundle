@@ -16,10 +16,6 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
  */
 class FMTinyMCEExtension extends Extension
 {
-    /**
-     * @param array            $configs
-     * @param ContainerBuilder $container
-     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $config = $this->processConfiguration(new Configuration(), $configs);

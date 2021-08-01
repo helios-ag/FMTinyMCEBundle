@@ -25,8 +25,8 @@ class FrameworkExtension extends Extension
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $container->setParameter('templating.engines', array('twig'));
-        $container->setParameter('templating.helper.form.resources', array());
-        $container->setParameter('twig.form.resources', array());
+        $container->setParameter('templating.engines', ['twig']);
+        $container->setParameter('templating.helper.form.resources', []);
+        $container->setParameter('twig.form.resources', []);
     }
 }

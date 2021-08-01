@@ -34,9 +34,7 @@ class TinyMCEHelper extends Helper
     /**
      * TinyMCEHelper constructor.
      *
-     * @param array           $parameters
-     * @param RouterInterface $router
-     * @param Packages        $assetsHelper
+     * @param array $parameters
      */
     public function __construct($parameters, RouterInterface $router, Packages $assetsHelper)
     {
@@ -190,7 +188,7 @@ class TinyMCEHelper extends Helper
     public function getTemplates($instance = 'default')
     {
         $templateString = '';
-        $templates      = array();
+        $templates      = [];
         if (array_key_exists('templates', $this->parameters[$instance])) {
             $templates = $this->parameters[$instance]['templates'];
         }

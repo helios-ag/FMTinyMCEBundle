@@ -68,10 +68,8 @@ class TinyMCEType extends AbstractType
 
     /**
      * TinyMCEType constructor.
-     *
-     * @param array $parameters
      */
-    public function __construct(array $parameters = array())
+    public function __construct(array $parameters = [])
     {
         $this->parameters = $parameters;
         $this->inline     = $parameters['inline'];
@@ -115,21 +113,21 @@ class TinyMCEType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setDefaults(array(
+            ->setDefaults([
                 'enable'      => $this->enable,
                 'inline'      => $this->inline,
                 'base_path'   => $this->basePath,
                 'js_path'     => $this->jsPath,
                 'instance'    => 'default',
-            ))
+            ])
         ;
-        $allowedTypesMap = array(
+        $allowedTypesMap = [
             'enable'      => 'bool',
             'inline'      => 'bool',
             'base_path'   => 'string',
             'js_path'     => 'string',
             'instance'    => 'string',
-        );
+        ];
         if (Kernel::VERSION_ID >= 20600) {
             foreach ($allowedTypesMap as $option => $allowedTypes) {
                 $resolver->addAllowedTypes($option, $allowedTypes);
