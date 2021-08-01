@@ -14,9 +14,9 @@ class TinyMCEExtensionTest extends AbstractExtensionTestCase
 {
     protected function getContainerExtensions(): array
     {
-        return array(
+        return [
             new FMTinyMCEExtension(),
-        );
+        ];
     }
 
     public function testServices()
@@ -30,7 +30,7 @@ class TinyMCEExtensionTest extends AbstractExtensionTestCase
     {
         $this->container = new ContainerBuilder();
         $loader          = new FMTinyMCEExtension();
-        $loader->load(array($this->getMinimalConfiguration()), $this->container);
+        $loader->load([$this->getMinimalConfiguration()], $this->container);
         $this->assertTrue($this->container instanceof ContainerBuilder);
     }
 

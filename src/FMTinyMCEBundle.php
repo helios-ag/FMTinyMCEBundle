@@ -16,9 +16,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 class FMTinyMCEBundle extends Bundle
 {
-    /**
-     * @param ContainerBuilder $container
-     */
     public function build(ContainerBuilder $container)
     {
         parent::build($container);

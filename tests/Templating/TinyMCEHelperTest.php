@@ -55,7 +55,7 @@ class TinyMCEHelperTest extends \PHPUnit\Framework\TestCase
     public function paramsProvider()
     {
         $parser = new Parser();
-        $data   = array();
+        $data   = [];
 
         foreach (new DirectoryIterator(__DIR__.'/../Fixtures/config/DI/') as $file) {
             if ($file->isFile()) {
@@ -73,10 +73,10 @@ class TinyMCEHelperTest extends \PHPUnit\Framework\TestCase
      */
     public function pathProvider()
     {
-        return array(
-            array('path', 'url', 'url'),
-            array('path', 'url?v=2', 'url'),
-        );
+        return [
+            ['path', 'url', 'url'],
+            ['path', 'url?v=2', 'url'],
+        ];
     }
 
     /**
@@ -86,10 +86,10 @@ class TinyMCEHelperTest extends \PHPUnit\Framework\TestCase
      */
     public function languageProvider()
     {
-        return array(
-            array('ru', 'ru'),
-            array('en_US', 'en-us'),
-        );
+        return [
+            ['ru', 'ru'],
+            ['en_US', 'en-us'],
+        ];
     }
 
     /**

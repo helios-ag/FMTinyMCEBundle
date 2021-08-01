@@ -17,11 +17,11 @@ class AppKernel extends Kernel
 
     public function registerBundles()
     {
-        $bundles = array(
+        $bundles = [
             new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new \Symfony\Bundle\TwigBundle\TwigBundle(),
             new \FM\TinyMCEBundle\FMTinyMCEBundle(),
-        );
+        ];
 
         return $bundles;
     }
