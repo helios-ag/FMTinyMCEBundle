@@ -29,7 +29,7 @@
     "tinymce/tinymce":                     "^4|^5"
   },
   "require-dev" : {
-    "symfony/phpunit-bridge": "^4.1 || ^5.0"
+    "symfony/phpunit-bridge": "^6.0.0"
   },
   "suggest": {
     "helios-ag/fm-elfinder-bundle": "Elfinder bundle, file manager",
