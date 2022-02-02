@@ -7,16 +7,9 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
-/**
- * Class FMTinyMCEExtension.
- *
- * @author Al Ganiev <helios.ag@gmail.com>
- * @copyright 2015-2018 Al Ganiev
- * @license http://www.opensource.org/licenses/mit-license.php MIT License
- */
 class FMTinyMCEExtension extends Extension
 {
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration(new Configuration(), $configs);
 
@@ -29,10 +22,7 @@ class FMTinyMCEExtension extends Extension
         $container->setParameter('fm_tinymce.instances', $config['instances']);
     }
 
-    /**
-     * @return string
-     */
-    public function getAlias()
+    public function getAlias(): string
     {
         return 'fm_tinymce';
     }
