@@ -5,9 +5,6 @@ namespace FM\TinyMCEBundle\Tests;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-/**
- * Class AppKernel.
- */
 class AppKernel extends Kernel
 {
     public function getRootDir()
@@ -15,7 +12,7 @@ class AppKernel extends Kernel
         return __DIR__.'/Fixtures';
     }
 
-    public function registerBundles()
+    public function registerBundles(): iterable
     {
         $bundles = [
             new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),

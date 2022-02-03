@@ -6,22 +6,12 @@ use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-/**
- * This class contains the configuration information for the bundle.
- *
- * This information is solely responsible for how the different configuration
- * sections are normalized, and merged.
- *
- * @author Al Ganiev <helios.ag@gmail.com>
- * @copyright 2015- Al Ganiev
- * @license http://www.opensource.org/licenses/mit-license.php MIT License
- */
 class Configuration implements ConfigurationInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('fm_tinymce');
         $rootNode    = $treeBuilder->getRootNode();
@@ -91,10 +81,7 @@ class Configuration implements ConfigurationInterface
                         ->end();
     }
 
-    /**
-     * @return \Symfony\Component\Config\Definition\Builder\NodeDefinition the toolbars node
-     */
-    private function createToolbarsNode()
+    private function createToolbarsNode(): NodeDefinition
     {
         return $this->createNode('toolbars')
             ->useAttributeAsKey('name')
@@ -102,32 +89,21 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
-    /**
-     * @param string $name the node name
-     *
-     * @return NodeDefinition the node
-     */
-    private function createNode($name)
+    private function createNode(string $name): NodeDefinition
     {
         $treeBuilder = new TreeBuilder($name);
 
         return $treeBuilder->getRootNode();
     }
 
-    /**
-     * @return string
-     */
-    private function getDefaultPlugins()
+    private function getDefaultPlugins(): string
     {
         return 'advlist autolink lists link image charmap print preview anchor,
         searchreplace visualblocks code fullscreen,
         insertdatetime media table contextmenu paste';
     }
 
-    /**
-     * @return string
-     */
-    private function getDefaultMenubar()
+    private function getDefaultMenubar(): string
     {
         return 'file edit insert view format table tools';
     }
