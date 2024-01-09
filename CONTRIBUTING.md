@@ -36,5 +36,5 @@ Please format your commit messages as follows:
 
  [gh-help]: https://help.github.com
  [gh-pr]:   https://help.github.com/send-pull-requests
- [issue]:   https://github.com/helios-ag/FMElfinderBundle/issues/new
- [pr]:      https://github.com/helios-ag/FMElfinderBundle/pull/new
+ [issue]:   https://github.com/helios-ag/FMTinyMCEBundle/issues/new
+ [pr]:      https://github.com/helios-ag/FMTinyMCEBundle/pull/new
