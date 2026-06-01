@@ -29,7 +29,7 @@
     "tinymce/tinymce":                     "^4 || >=5.1.0"
   },
   "require-dev" : {
-    "symfony/phpunit-bridge": "^7.0.2",
+    "symfony/phpunit-bridge": "^8.1.0",
     "matthiasnoback/symfony-config-test":  "^5.2",
     "matthiasnoback/symfony-dependency-injection-test": "^6.0"
   },
