@@ -9,7 +9,8 @@
         }
 
         const promise = new Promise((resolve, reject) => {
-            const existing = document.querySelector(`script[data-fm-tinymce-script="${CSS.escape(scriptUrl)}"]`);
+            const existing = Array.from(document.querySelectorAll('script[data-fm-tinymce-script]'))
+                .find((script) => script.dataset.fmTinymceScript === scriptUrl);
             if (existing) {
                 existing.addEventListener('load', resolve, { once: true });
                 existing.addEventListener('error', reject, { once: true });

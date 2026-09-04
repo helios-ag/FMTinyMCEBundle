@@ -7,3 +7,5 @@
 /var
 /node_modules
 /.php-cs-fixer.cache
+/test-results
+/playwright-report

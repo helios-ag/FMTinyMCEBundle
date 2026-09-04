@@ -42,3 +42,49 @@ test('ignores fields without TinyMCE data and malformed configuration', async ()
   assert.equal(initializations.length, 0);
   assert.equal(errors.length, 1);
 });
+
+test('loads each TinyMCE script URL once', async () => {
+  const { dom } = boot('');
+  const firstLoad = dom.window.FMTinyMCE.loadScript('/tinymce.js');
+  const script = dom.window.document.querySelector('script[data-fm-tinymce-script="/tinymce.js"]');
+
+  assert.ok(script);
+  assert.equal(dom.window.document.querySelectorAll('script[data-fm-tinymce-script]').length, 1);
+  script.dispatchEvent(new dom.window.Event('load'));
+  await firstLoad;
+  await dom.window.FMTinyMCE.loadScript('/tinymce.js');
+
+  assert.equal(dom.window.document.querySelectorAll('script[data-fm-tinymce-script]').length, 1);
+});
+
+test('synchronizes an inline editor into its hidden textarea', async () => {
+  const { dom, initializations } = boot(`
+    <textarea id="body" hidden></textarea>
+    <div id="body_editor" data-fm-tinymce-inline-target="body" data-fm-tinymce-options='{"inline":true}' data-fm-tinymce-script="/tinymce.js"></div>
+  `);
+  dom.window.FMTinyMCE.loadScript = async () => {};
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  const handlers = {};
+  initializations[0].setup({
+    on: (events, handler) => { handlers[events] = handler; },
+    getContent: () => '<p>updated</p>',
+  });
+
+  handlers['change input']();
+
+  assert.equal(dom.window.document.getElementById('body').value, '<p>updated</p>');
+});
+
+test('adapts the controlled FMElfinder URL into a TinyMCE callback', async () => {
+  const { dom, initializations } = boot('<textarea id="body" data-fm-tinymce-options=\'{"fm_elfinder_url":"/elfinder"}\' data-fm-tinymce-script="/tinymce.js"></textarea>');
+  dom.window.FMTinyMCE.loadScript = async () => {};
+  dom.window.open = () => null;
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  let selectedUrl = null;
+
+  initializations[0].file_picker_callback((url) => { selectedUrl = url; });
+  dom.window.FMTinyMCEFilePickerCallback('/uploads/image.png');
+
+  assert.equal(selectedUrl, '/uploads/image.png');
+  assert.equal(initializations[0].fm_elfinder_url, undefined);
+});
