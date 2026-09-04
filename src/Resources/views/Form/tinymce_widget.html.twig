@@ -2,6 +2,7 @@
     {% if tiny_mce_enabled %}
         {% set configuration = tinymce_configuration(id, tiny_mce_instance, tiny_mce_enabled) %}
         {% set script_path = tinymce_asset_url(tiny_mce_script_path) %}
+        <script src="{{ tinymce_asset_url('bundles/fmtinymce/fm-tinymce.js')|e('html_attr') }}" defer></script>
 
         {% if tiny_mce_inline %}
             <textarea {{ block('widget_attributes') }} hidden>{{ value }}</textarea>
