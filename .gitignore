@@ -3,3 +3,5 @@
 /vendor
 /Tests/Fixtures/cache
 /Tests/Fixtures/logs
+/.phpunit.cache
+/var
