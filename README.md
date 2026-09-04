@@ -46,10 +46,26 @@ fm_tinymce:
       options: { }
 ```
 
+Configure the matching FMElfinder instance to use its callback editor. The callback name is fixed and must match the runtime API below:
+
+```yaml
+fm_elfinder:
+  instances:
+    tinymce:
+      editor: callback
+      callback_function: FMTinyMCE.receiveFiles
+      connector:
+        roots:
+          uploads:
+            driver: LocalFileSystem
+            path: '%kernel.project_dir%/public/uploads'
+            url: /uploads
+```
+
 ```php
 use FM\TinyMCEBundle\Form\Type\TinyMCEType;
 
-$builder->add('body', TinyMCEType::class, ['instance' => 'default']);
+$builder->add('body', TinyMCEType::class, ['instance' => 'elfinder']);
 ```
 
 Use `enabled: false` for a plain textarea and `inline: true` on an instance for an inline editor.

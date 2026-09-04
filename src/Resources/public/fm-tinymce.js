@@ -74,7 +74,7 @@
                     editor.on('init', () => {
                         editor.setContent(hiddenTarget.value);
                     });
-                    editor.on('change input', synchronize);
+                    editor.on('change input SetContent Undo Redo', synchronize);
                     hiddenTarget.form?.addEventListener('submit', synchronize);
                 };
             }
@@ -82,9 +82,9 @@
             if (configuration.fm_elfinder_url) {
                 const pickerUrl = configuration.fm_elfinder_url;
                 delete configuration.fm_elfinder_url;
-                configuration.file_picker_callback = (callback) => {
+                configuration.file_picker_callback = (callback, value, meta) => {
+                    namespace.pendingFilePicker = { callback, meta };
                     window.open(pickerUrl, 'fm_elfinder', 'width=900,height=600');
-                    window.FMTinyMCEFilePickerCallback = callback;
                 };
             }
 
@@ -95,6 +95,25 @@
     const namespace = window.FMTinyMCE = window.FMTinyMCE || {};
     namespace.loadScript = namespace.loadScript || loadScript;
     namespace.initialize = initialize;
+    namespace.receiveFiles = namespace.receiveFiles || ((files) => {
+        const pending = namespace.pendingFilePicker;
+        const file = Array.isArray(files) ? files[0] : null;
+
+        if (!pending || !file || typeof file.url !== 'string') {
+            console.error('FMElfinder did not return a valid file selection.');
+            return;
+        }
+
+        let metadata;
+        if (pending.meta?.filetype === 'image') {
+            metadata = { alt: file.name || '' };
+        } else if (pending.meta?.filetype === 'file') {
+            metadata = { text: file.name || '', title: file.name || '' };
+        }
+
+        pending.callback(file.url, metadata);
+        namespace.pendingFilePicker = null;
+    });
 
     document.addEventListener('DOMContentLoaded', () => {
         namespace.initialize();
