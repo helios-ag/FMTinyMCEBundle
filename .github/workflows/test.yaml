@@ -18,14 +18,14 @@ jobs:
           - php: '8.4'
             symfony: '8.0.*'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           extensions: mbstring, intl
           tools: composer:v2
           coverage: none
-      - run: composer update --no-interaction --prefer-dist --with-all-dependencies symfony/*:${{ matrix.symfony }}
+      - run: composer update --no-interaction --prefer-dist --with-all-dependencies
       - run: composer validate --strict
       - run: composer test
       - run: composer lint
