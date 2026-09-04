@@ -13,7 +13,7 @@ final class ElfinderFilePicker
     }
 
     /** @param array<string, mixed> $configuration
-     *  @return array<string, string>
+     * @return array<string, string>
      */
     public function build(array $configuration, string $instanceName): array
     {

@@ -35,10 +35,25 @@ final class TinyMCEConfigurationBuilder
         $options['selector'] = '#'.$fieldId;
 
         if (null !== $this->filePicker) {
-            $options += $this->filePicker->build($instance['file_picker'] ?? [], $instanceName);
+            $filePickerConfiguration = $instance['file_picker'] ?? [];
+            if (!is_array($filePickerConfiguration)) {
+                throw new \LogicException(sprintf('The "%s" TinyMCE instance has invalid file picker configuration.', $instanceName));
+            }
+
+            /** @var array<string, mixed> $filePickerConfiguration */
+            $options += $this->filePicker->build($filePickerConfiguration, $instanceName);
         }
 
-        return $options;
+        $configuration = [];
+        foreach ($options as $key => $value) {
+            if (!is_string($key)) {
+                throw new \LogicException(sprintf('The "%s" TinyMCE instance has a non-string option key.', $instanceName));
+            }
+
+            $configuration[$key] = $value;
+        }
+
+        return $configuration;
     }
 
     /** @param array<string, mixed> $configuration */

@@ -33,6 +33,10 @@ final class TinyMCEType extends AbstractType
     /** @param array<string, mixed> $options */
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
+        if (!is_string($options['instance']) || (null !== $options['enabled'] && !is_bool($options['enabled']))) {
+            throw new \LogicException('TinyMCE form options were not normalized.');
+        }
+
         try {
             $instance = $this->instances->resolve($options['instance'], $options['enabled']);
         } catch (\InvalidArgumentException $exception) {

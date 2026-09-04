@@ -4,7 +4,7 @@
         {% set script_path = tinymce_asset_url(tiny_mce_script_path) %}
 
         {% if tiny_mce_inline %}
-            <textarea {{ block('widget_attributes') }} hidden data-fm-tinymce-options="{{ configuration|e('html_attr') }}" data-fm-tinymce-script="{{ script_path|e('html_attr') }}">{{ value }}</textarea>
+            <textarea {{ block('widget_attributes') }} hidden>{{ value }}</textarea>
             <div id="{{ id }}_editor" contenteditable="true" data-fm-tinymce-inline-target="{{ id|e('html_attr') }}" data-fm-tinymce-options="{{ configuration|e('html_attr') }}" data-fm-tinymce-script="{{ script_path|e('html_attr') }}">{{ value }}</div>
         {% else %}
             <textarea {{ block('widget_attributes') }} data-fm-tinymce-options="{{ configuration|e('html_attr') }}" data-fm-tinymce-script="{{ script_path|e('html_attr') }}">{{ value }}</textarea>

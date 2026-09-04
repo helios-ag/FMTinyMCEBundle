@@ -18,11 +18,7 @@ final class InstanceConfigurationResolver
             $names = array_keys($this->instances);
             sort($names);
 
-            throw new \InvalidArgumentException(sprintf(
-                'Unknown TinyMCE instance "%s". Available instances: %s.',
-                $name,
-                implode(', ', $names),
-            ));
+            throw new \InvalidArgumentException(sprintf('Unknown TinyMCE instance "%s". Available instances: %s.', $name, implode(', ', $names)));
         }
 
         $instance = $this->instances[$name];

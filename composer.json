@@ -33,6 +33,7 @@
     "tinymce/tinymce": "^8.9"
   },
   "require-dev": {
+    "composer/composer": "^2.9",
     "friendsofphp/php-cs-fixer": "^3.0",
     "matthiasnoback/symfony-config-test": "^6.0",
     "matthiasnoback/symfony-dependency-injection-test": "^6.0",
@@ -58,7 +59,7 @@
   "scripts": {
     "test": "phpunit",
     "lint": [
-      "php-cs-fixer check --diff",
+      "php-cs-fixer check --diff --allow-risky=yes",
       "phpstan analyse"
     ],
     "copy-tinymce-assets": "FM\\TinyMCEBundle\\Composer\\TinyMCEAssetInstaller::copy"

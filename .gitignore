@@ -5,3 +5,5 @@
 /Tests/Fixtures/logs
 /.phpunit.cache
 /var
+/node_modules
+/.php-cs-fixer.cache

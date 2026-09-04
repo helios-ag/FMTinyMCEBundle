@@ -92,6 +92,7 @@ final class Configuration implements ConfigurationInterface
             throw new InvalidConfigurationException('The "options" value must be a JSON-compatible map.');
         }
 
+        /** @var array<string, mixed> $options */
         if (array_key_exists('file_picker_callback', $options)) {
             throw new InvalidConfigurationException('The "file_picker_callback" option is not supported in TinyMCE 8. Use "file_picker.type: fm_elfinder" or configure custom JavaScript in the application.');
         }
@@ -136,10 +137,6 @@ final class Configuration implements ConfigurationInterface
         }
 
         foreach ($value as $key => $nestedValue) {
-            if (!is_int($key) && !is_string($key)) {
-                throw new InvalidConfigurationException(sprintf('The "%s" option contains an invalid key.', $path));
-            }
-
             $this->assertJsonCompatible($nestedValue, sprintf('%s.%s', $path, (string) $key));
         }
     }

@@ -15,7 +15,7 @@ final class FMTinyMCEExtension extends Extension implements PrependExtensionInte
     public function load(array $configs, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration(new Configuration(), $configs);
-
+        /** @var array{instances: array<string, array<string, mixed>>, assets: array{base_path: string, script_path: string}} $config */
         $loader = new PhpFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.php');
 

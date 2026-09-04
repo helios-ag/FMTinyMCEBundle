@@ -10,12 +10,8 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 final class FMTinyMCEBundle extends Bundle
 {
-    public function getContainerExtension(): ?ExtensionInterface
+    public function getContainerExtension(): ExtensionInterface
     {
-        if (null === $this->extension) {
-            $this->extension = new FMTinyMCEExtension();
-        }
-
-        return $this->extension;
+        return new FMTinyMCEExtension();
     }
 }
