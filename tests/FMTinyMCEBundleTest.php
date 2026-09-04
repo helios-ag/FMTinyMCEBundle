@@ -1,33 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace FM\TinyMCEBundle\Tests;
 
 use FM\TinyMCEBundle\FMTinyMCEBundle;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-/**
- * Class FMTinyMCEBundleTest.
- */
-class FMTinyMCEBundleTest extends \PHPUnit\Framework\TestCase
+final class FMTinyMCEBundleTest extends TestCase
 {
-    public function testIsBundle()
+    public function testItIsASymfonyBundle(): void
     {
-        $bundle = new FMTinyMCEBundle();
-
-        $this->assertInstanceOf('Symfony\Component\HttpKernel\Bundle\Bundle', $bundle);
-    }
-
-    public function testCompilerPasses()
-    {
-        $containerBuilder = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')
-            ->disableOriginalConstructor()
-            ->setMethods(['addCompilerPass'])
-            ->getMock();
-        $containerBuilder
-            ->expects($this->at(0))
-            ->method('addCompilerPass')
-            ->with($this->isInstanceOf('FM\TinyMCEBundle\DependencyInjection\Compiler\TwigFormPass'))
-            ->will($this->returnSelf());
-        $bundle = new FMTinyMCEBundle();
-        $bundle->build($containerBuilder);
+        self::assertInstanceOf(Bundle::class, new FMTinyMCEBundle());
     }
 }

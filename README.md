@@ -1,191 +1,65 @@
-FMTinyMCEBundle
-================
+# FMTinyMCEBundle
 
-[TinyMCE](https://github.com/tinymce/tinymce) integration in Symfony
+MIT-licensed Symfony 7.4/8 bundle for self-hosted [TinyMCE 8 Community Edition](https://www.tiny.cloud/docs/tinymce/latest/).
 
-The purpose of bundle is to provide seamless integration between elFinder and TinyMCE editor.
+## Requirements
 
-### Code Quality Assurance ###
+- PHP 8.2 or newer
+- Symfony 7.4 or 8.x
+- TinyMCE 8 Community Edition (`tinymce/tinymce:^8.9`)
 
-|CoverAlls| License | StyleCI | Version Status |
-|-----------------|-----------------|-----------------|-----------------|
-|[![Coverage Status](https://coveralls.io/repos/helios-ag/FMTinyMCEBundle/badge.svg?branch=master&service=github)](https://coveralls.io/github/helios-ag/FMTinyMCEBundle?branch=master)|[![License](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/license.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle)|[![StyleCI](https://styleci.io/repos/44680984/shield)](https://styleci.io/repos/44680984)|[![Latest Stable Version](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/v/stable.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle) [![Latest Unstable Version](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/v/unstable.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle)
+The bundle is MIT. TinyMCE Community Edition remains GPL-2.0-or-later; use it only where that license is compatible with your application. Tiny Cloud, commercial keys, and premium plugins are not supported.
 
+## Install
 
-| Downloads |
-|-----------|
-|[![Total Downloads](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/downloads.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle)
-
-
-**TinyMCE** is a platform independent web-based JavaScript WYSIWYG HTML editor control released as open source under LGPL.
-
-TinyMCE enables you to convert HTML TEXTAREA fields or other HTML elements to editor instances.
-
-
-**Table of contents**
-
-- [Installation](#installation)
-    - [Step 1: Installation](#step-1-installation)
-    - [Step 2: Enable the bundle](#step-2-enable-the-bundle)
-- [Basic configuration](#basic-configuration)
-    - [Add configuration options to your config.yml](#add-configuration-options-to-your-configyml)
-
-## Installation
-
-### Step 1: Installation
-
-Add FMTinyMCEBundle to your composer.json:
-
-```json
-{
-    "require": {
-        "helios-ag/fm-tinymce-bundle": "~1"
-    }
-}
+```bash
+composer require helios-ag/fm-tinymce-bundle
 ```
 
-If you want to override default assets directory of Richfilemanager, add next option.
-By default, assets copied to `web/assets/tinymce` or `public/assets/tinymce`
-depending on Symfony version
-
-```json
-{
-    "config": {
-        "tinymce-dir": "web/assets/"
-    }
-}
-```
-
-Add composer script
-
-`"FM\\TinyMCEBundle\\Composer\\TinyMCEScriptHandler::copy",`
-
-to scripts section of composer.json
+Register the bundle installer in the consuming application's root `composer.json`; Composer does not execute scripts supplied by dependencies:
 
 ```json
 {
   "scripts": {
-      "symfony-scripts": [
-          "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-          "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-          "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-          "FM\\TinyMCEBundle\\Composer\\TinyMCEcriptHandler::copy",
-          "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-          "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-          "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
-      ]
-    }
+    "post-install-cmd": ["FM\\TinyMCEBundle\\Composer\\TinyMCEAssetInstaller::copy"],
+    "post-update-cmd": ["FM\\TinyMCEBundle\\Composer\\TinyMCEAssetInstaller::copy"]
+  }
 }
 ```
 
-Now tell the composer to download the bundle by running the command:
+Run `composer install` or `composer update` after registering it. The installer mirrors TinyMCE from Composer's vendor directory into `public/assets/tinymce`. Override the destination with root-level `extra.tinymce-dir`.
 
-```sh
-composer update helios-ag/fm-tinymce-bundle
+## Configure
+
+```yaml
+fm_tinymce:
+  instances:
+    default:
+      options:
+        plugins: [link, image, lists, code]
+        toolbar: 'undo redo | bold italic | link image | code'
+    elfinder:
+      file_picker:
+        type: fm_elfinder
+        route: elfinder
+        route_parameters: { instance: tinymce }
+      options: { }
 ```
-
-### Step 2: Enable the bundle
-
-Enable the bundle in the kernel:
 
 ```php
-<?php
-// app/AppKernel.php
+use FM\TinyMCEBundle\Form\Type\TinyMCEType;
 
-public function registerBundles()
-{
-    $bundles = array(
-        // ...
-        new FM\TinyMCEBundle\FMTinyMCEBundle(),
-    );
-}
+$builder->add('body', TinyMCEType::class, ['instance' => 'default']);
 ```
 
+Use `enabled: false` for a plain textarea and `inline: true` on an instance for an inline editor.
 
-## Basic configuration
+## Development
 
-### Add configuration options to your config.yml
-
-```yaml
-fm_tinymce:
-    instances:
-        first_instance:
-            language: en_US
-            width: 300
-            height: 400
-        my_advanced_configuration:
-             locale: ru_RU
+```bash
+composer test
+composer lint
+npm test
 ```
 
-##Advanced Configuration
-
-To make story short, here example of Integration between TinyMCE and Elfinder bundles
-
-```yaml
-fm_tinymce:
-    instances:            # Required
-        elfinder:
-            language: ru
-            image_advtab:         true
-            file_picker_callback: elFinderBrowser
-            filebrowser_type:     fm_elfinder
-            filebrowser:
-                route:                elfinder
-                route_parameters:
-                    instance: tinymce
-
-```
-
-and configuration for ElFinderBrowser
-
-```yaml
-fm_elfinder:
-    instances:
-        tinymce:
-            language: ru
-            editor: tinymce4 #
-            include_assets: true
-            relative_path: true
-            connector:
-                roots:       # at least one root must be defined
-                    uploads:
-                        show_hidden: false
-                        driver: LocalFileSystem
-                        path: uploads
-                        upload_allow: ['all']
-```
-
-Full configuration reference example
-
-
-```yaml
-fm_tinymce:
-    enable:               true
-    inline:               false
-    base_path:            assets/tinymce/
-    js_path:              assets/tinymce/tinymce.min.js
-    instances:
-        default:
-            language:             en_US
-            width:                600
-            height:               300
-            theme:                modern
-            toolbar_item_size:    small
-            menubar:              file edit insert view format table tools
-            image_advtab:         false
-            templates:
-                templates:
-                    title:                ~
-                    content:              ~
-            plugins:              ""
-            relative_urls:        false
-            convert_urls:         false
-            toolbars:
-                toolbar1:         undo redo | styleselect | bold italic | link image
-            filebrowser_type:     fm_elfinder
-            file_picker_callback: elFinderBrowser
-            filebrowser:
-                url:                  http://localhost/elfinder
-                route:                elfinder
-                route_parameters:
-                    instance: default
+See [UPGRADE-2.0.md](UPGRADE-2.0.md) for breaking changes.

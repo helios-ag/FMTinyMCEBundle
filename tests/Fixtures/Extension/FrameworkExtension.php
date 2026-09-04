@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Ivory CKEditor package.
  *
@@ -20,9 +21,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class FrameworkExtension extends Extension
 {
-    /**
-     * {@inheritdoc}
-     */
     public function load(array $config, ContainerBuilder $container)
     {
         $container->setParameter('templating.engines', ['twig']);
