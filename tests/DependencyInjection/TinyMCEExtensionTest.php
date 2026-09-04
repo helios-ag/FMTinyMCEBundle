@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace FM\TinyMCEBundle\Tests\DependencyInjection;
 
+use FM\TinyMCEBundle\Configuration\TinyMCEConfigurationBuilder;
 use FM\TinyMCEBundle\DependencyInjection\FMTinyMCEExtension;
+use FM\TinyMCEBundle\Form\Type\TinyMCEType;
+use FM\TinyMCEBundle\Twig\TinyMCEExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\Yaml\Parser;
 
-/**
- * Class TinyMCEExtensionTest.
- */
-class TinyMCEExtensionTest extends AbstractExtensionTestCase
+final class TinyMCEExtensionTest extends AbstractExtensionTestCase
 {
     protected function getContainerExtensions(): array
     {
@@ -19,34 +20,28 @@ class TinyMCEExtensionTest extends AbstractExtensionTestCase
         ];
     }
 
-    public function testServices()
+    public function testItLoadsModernServiceDefinitions(): void
     {
-        $this->load();
-        $this->assertContainerBuilderHasService('fm_tinymce.form.type');
-        $this->assertContainerBuilderHasService('fm_tinymce.templating.helper');
+        $this->load([
+            'instances' => [
+                'default' => ['options' => []],
+            ],
+        ]);
+
+        $this->assertContainerBuilderHasService(TinyMCEType::class);
+        $this->assertContainerBuilderHasService(TinyMCEExtension::class);
+        $this->assertContainerBuilderHasService(TinyMCEConfigurationBuilder::class);
+        self::assertSame('assets/tinymce', $this->container->getParameter('fm_tinymce.assets.base_path'));
     }
 
-    public function testMinimumConfiguration()
+    public function testItPrependsItsTwigFormTheme(): void
     {
-        $this->container = new ContainerBuilder();
-        $loader          = new FMTinyMCEExtension();
-        $loader->load([$this->getMinimalConfiguration()], $this->container);
-        $this->assertTrue($this->container instanceof ContainerBuilder);
-    }
+        $container = new ContainerBuilder();
 
-    protected function getMinimalConfiguration(): array
-    {
-        $yaml = <<<'EOF'
-instances:
-    first_instance:
-        language: en_US
-        width: 300
-        height: 400
-    my_advanced_configuration:
-        language: ru_RU
-EOF;
-        $parser = new Parser();
+        (new FMTinyMCEExtension())->prepend($container);
 
-        return $parser->parse($yaml);
+        self::assertSame([
+            ['form_themes' => ['@FMTinyMCE/Form/tinymce_widget.html.twig']],
+        ], $container->getExtensionConfig('twig'));
     }
 }

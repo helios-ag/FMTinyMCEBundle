@@ -6,10 +6,12 @@ namespace FM\TinyMCEBundle\Tests\Configuration;
 
 use FM\TinyMCEBundle\Configuration\InstanceConfigurationResolver;
 use FM\TinyMCEBundle\Configuration\TinyMCEConfigurationBuilder;
+use FM\TinyMCEBundle\FilePicker\ElfinderFilePicker;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Asset\Package;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class TinyMCEConfigurationBuilderTest extends TestCase
 {
@@ -53,5 +55,34 @@ final class TinyMCEConfigurationBuilderTest extends TestCase
         self::assertStringContainsString('\\u003C', $json);
         self::assertStringNotContainsString('</script>', $json);
         self::assertSame('</script><script>window.pwned=1</script>', json_decode($json, true, flags: JSON_THROW_ON_ERROR)['content_style']);
+    }
+
+    public function testItMergesTheStructuredElfinderPickerConfiguration(): void
+    {
+        $urls = $this->createMock(UrlGeneratorInterface::class);
+        $urls->expects(self::once())
+            ->method('generate')
+            ->with('elfinder', ['instance' => 'tinymce'], UrlGeneratorInterface::ABSOLUTE_PATH)
+            ->willReturn('/elfinder?instance=tinymce');
+        $packages = new Packages(new Package(new EmptyVersionStrategy()));
+        $builder = new TinyMCEConfigurationBuilder(
+            new InstanceConfigurationResolver([
+                'default' => [
+                    'enabled' => true,
+                    'inline' => false,
+                    'options' => [],
+                    'file_picker' => [
+                        'type' => 'fm_elfinder',
+                        'route' => 'elfinder',
+                        'route_parameters' => ['instance' => 'tinymce'],
+                    ],
+                ],
+            ]),
+            $packages,
+            'assets/tinymce',
+            new ElfinderFilePicker($urls),
+        );
+
+        self::assertSame('/elfinder?instance=tinymce', $builder->build('body', 'default')['fm_elfinder_url']);
     }
 }

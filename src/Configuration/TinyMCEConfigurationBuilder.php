@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace FM\TinyMCEBundle\Configuration;
 
+use FM\TinyMCEBundle\FilePicker\ElfinderFilePicker;
 use Symfony\Component\Asset\Packages;
 
 final class TinyMCEConfigurationBuilder
@@ -12,6 +13,7 @@ final class TinyMCEConfigurationBuilder
         private readonly InstanceConfigurationResolver $instances,
         private readonly Packages $packages,
         private readonly string $basePath,
+        private readonly ?ElfinderFilePicker $filePicker = null,
     ) {
     }
 
@@ -31,6 +33,10 @@ final class TinyMCEConfigurationBuilder
         $options['inline'] = (bool) ($instance['inline'] ?? false);
         $options['license_key'] = 'gpl';
         $options['selector'] = '#'.$fieldId;
+
+        if (null !== $this->filePicker) {
+            $options += $this->filePicker->build($instance['file_picker'] ?? [], $instanceName);
+        }
 
         return $options;
     }

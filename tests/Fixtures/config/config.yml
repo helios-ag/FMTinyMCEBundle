@@ -6,14 +6,10 @@ twig:
 
 framework:
     secret:     'secret'
+    test: true
     router:     { resource: null, utf8: true }
 
 fm_tinymce:
     instances:
         default:
-          filebrowser_type: fm_elfinder
-          file_picker_callback: elFinderBrowser
-          filebrowser:
-              route: elfinder
-              route_parameters:
-                  instance: tinymce
+          options: { }
