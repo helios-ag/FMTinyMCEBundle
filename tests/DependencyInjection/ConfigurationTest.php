@@ -49,6 +49,21 @@ final class ConfigurationTest extends TestCase
         ]);
     }
 
+    public function testItRejectsTheModernThemeRemovedBeforeTinyMceEight(): void
+    {
+        $this->expectException(InvalidConfigurationException::class);
+        $this->expectExceptionMessage('modern');
+        $this->expectExceptionMessage('TinyMCE 8');
+
+        $this->process([
+            'instances' => [
+                'default' => [
+                    'options' => ['theme' => 'modern'],
+                ],
+            ],
+        ]);
+    }
+
     /** @param array<string, mixed> $configuration */
     private function process(array $configuration): array
     {

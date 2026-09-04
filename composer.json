@@ -61,7 +61,6 @@
     "lint": [
       "php-cs-fixer check --diff --allow-risky=yes",
       "phpstan analyse"
-    ],
-    "copy-tinymce-assets": "FM\\TinyMCEBundle\\Composer\\TinyMCEAssetInstaller::copy"
+    ]
   }
 }

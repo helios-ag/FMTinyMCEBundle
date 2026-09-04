@@ -67,9 +67,15 @@
                         previousSetup(editor);
                     }
 
-                    editor.on('change input', () => {
+                    const synchronize = () => {
                         hiddenTarget.value = editor.getContent();
+                    };
+
+                    editor.on('init', () => {
+                        editor.setContent(hiddenTarget.value);
                     });
+                    editor.on('change input', synchronize);
+                    hiddenTarget.form?.addEventListener('submit', synchronize);
                 };
             }
 

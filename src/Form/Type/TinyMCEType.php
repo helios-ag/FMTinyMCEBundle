@@ -53,4 +53,9 @@ final class TinyMCEType extends AbstractType
     {
         return TextareaType::class;
     }
+
+    public function getBlockPrefix(): string
+    {
+        return 'tinymce';
+    }
 }

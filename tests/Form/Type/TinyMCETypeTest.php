@@ -55,4 +55,12 @@ final class TinyMCETypeTest extends TypeTestCase
             'assets/tinymce/tinymce.min.js',
         ))->getParent());
     }
+
+    public function testItUsesTheRegisteredTinymceFormThemeBlock(): void
+    {
+        self::assertSame('tinymce', (new TinyMCEType(
+            new InstanceConfigurationResolver(['default' => ['enabled' => true, 'inline' => false, 'options' => []]]),
+            'assets/tinymce/tinymce.min.js',
+        ))->getBlockPrefix());
+    }
 }

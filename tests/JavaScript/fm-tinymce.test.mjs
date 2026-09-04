@@ -59,18 +59,26 @@ test('loads each TinyMCE script URL once', async () => {
 
 test('synchronizes an inline editor into its hidden textarea', async () => {
   const { dom, initializations } = boot(`
-    <textarea id="body" hidden></textarea>
-    <div id="body_editor" data-fm-tinymce-inline-target="body" data-fm-tinymce-options='{"inline":true}' data-fm-tinymce-script="/tinymce.js"></div>
+    <form><textarea id="body" hidden>&lt;p&gt;initial&lt;/p&gt;</textarea>
+    <div id="body_editor" data-fm-tinymce-inline-target="body" data-fm-tinymce-options='{"inline":true}' data-fm-tinymce-script="/tinymce.js">&lt;p&gt;initial&lt;/p&gt;</div></form>
   `);
   dom.window.FMTinyMCE.loadScript = async () => {};
   await new Promise((resolve) => setTimeout(resolve, 0));
   const handlers = {};
-  initializations[0].setup({
+  const editor = {
     on: (events, handler) => { handlers[events] = handler; },
     getContent: () => '<p>updated</p>',
-  });
+    setContent: (content) => { editor.content = content; },
+  };
+  initializations[0].setup(editor);
 
+  handlers.init();
   handlers['change input']();
+
+  assert.equal(editor.content, '<p>initial</p>');
+  assert.equal(dom.window.document.getElementById('body').value, '<p>updated</p>');
+
+  dom.window.document.querySelector('form').dispatchEvent(new dom.window.Event('submit'));
 
   assert.equal(dom.window.document.getElementById('body').value, '<p>updated</p>');
 });

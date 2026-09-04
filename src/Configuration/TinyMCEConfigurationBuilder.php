@@ -29,7 +29,8 @@ final class TinyMCEConfigurationBuilder
 
         unset($options['file_picker_callback'], $options['license_key'], $options['selector']);
 
-        $options['base_url'] = $this->packages->getUrl($this->basePath);
+        $baseUrl = $this->packages->getUrl($this->basePath);
+        $options['base_url'] = substr($baseUrl, 0, strcspn($baseUrl, '?#'));
         $options['inline'] = (bool) ($instance['inline'] ?? false);
         $options['license_key'] = 'gpl';
         $options['selector'] = '#'.$fieldId;

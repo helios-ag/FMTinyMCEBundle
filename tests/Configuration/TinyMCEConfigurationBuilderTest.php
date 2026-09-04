@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Asset\Package;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
+use Symfony\Component\Asset\VersionStrategy\StaticVersionStrategy;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class TinyMCEConfigurationBuilderTest extends TestCase
@@ -55,6 +56,17 @@ final class TinyMCEConfigurationBuilderTest extends TestCase
         self::assertStringContainsString('\\u003C', $json);
         self::assertStringNotContainsString('</script>', $json);
         self::assertSame('</script><script>window.pwned=1</script>', json_decode($json, true, flags: JSON_THROW_ON_ERROR)['content_style']);
+    }
+
+    public function testItDoesNotUseAVersionedAssetUrlAsTinyMceBaseUrl(): void
+    {
+        $builder = new TinyMCEConfigurationBuilder(
+            new InstanceConfigurationResolver(['default' => ['enabled' => true, 'inline' => false, 'options' => []]]),
+            new Packages(new Package(new StaticVersionStrategy('build-123'))),
+            'assets/tinymce',
+        );
+
+        self::assertSame('assets/tinymce', $builder->build('body', 'default')['base_url']);
     }
 
     public function testItMergesTheStructuredElfinderPickerConfiguration(): void

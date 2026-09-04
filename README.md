@@ -14,10 +14,20 @@ The bundle is MIT. TinyMCE Community Edition remains GPL-2.0-or-later; use it on
 
 ```bash
 composer require helios-ag/fm-tinymce-bundle
-composer run copy-tinymce-assets
 ```
 
-The installer mirrors TinyMCE from Composer's vendor directory into `public/assets/tinymce`. Override it with `extra.tinymce-dir`.
+Register the bundle installer in the consuming application's root `composer.json`; Composer does not execute scripts supplied by dependencies:
+
+```json
+{
+  "scripts": {
+    "post-install-cmd": ["FM\\TinyMCEBundle\\Composer\\TinyMCEAssetInstaller::copy"],
+    "post-update-cmd": ["FM\\TinyMCEBundle\\Composer\\TinyMCEAssetInstaller::copy"]
+  }
+}
+```
+
+Run `composer install` or `composer update` after registering it. The installer mirrors TinyMCE from Composer's vendor directory into `public/assets/tinymce`. Override the destination with root-level `extra.tinymce-dir`.
 
 ## Configure
 

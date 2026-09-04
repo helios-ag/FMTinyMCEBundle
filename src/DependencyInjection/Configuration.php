@@ -97,6 +97,10 @@ final class Configuration implements ConfigurationInterface
             throw new InvalidConfigurationException('The "file_picker_callback" option is not supported in TinyMCE 8. Use "file_picker.type: fm_elfinder" or configure custom JavaScript in the application.');
         }
 
+        if ('modern' === ($options['theme'] ?? null)) {
+            throw new InvalidConfigurationException('The "modern" theme is not available in TinyMCE 8. Remove the "theme" option.');
+        }
+
         if (isset($options['plugins'])) {
             if (!is_array($options['plugins'])) {
                 throw new InvalidConfigurationException('The "options.plugins" value must be a list of plugin names.');
