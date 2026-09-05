@@ -49,6 +49,40 @@ final class ConfigurationTest extends TestCase
         ]);
     }
 
+    public function testItNormalizesAStringPluginList(): void
+    {
+        $configuration = $this->process([
+            'instances' => [
+                'default' => [
+                    'options' => [
+                        'plugins' => "link  image,\nlists",
+                    ],
+                ],
+            ],
+        ]);
+
+        self::assertSame(
+            ['link', 'image', 'lists'],
+            $configuration['instances']['default']['options']['plugins'],
+        );
+    }
+
+    public function testItRejectsRemovedPluginsInAStringPluginList(): void
+    {
+        $this->expectException(InvalidConfigurationException::class);
+        $this->expectExceptionMessage('print');
+
+        $this->process([
+            'instances' => [
+                'default' => [
+                    'options' => [
+                        'plugins' => 'link print',
+                    ],
+                ],
+            ],
+        ]);
+    }
+
     public function testItRejectsTheModernThemeRemovedBeforeTinyMceEight(): void
     {
         $this->expectException(InvalidConfigurationException::class);
