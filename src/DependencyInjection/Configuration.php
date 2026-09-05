@@ -102,6 +102,16 @@ final class Configuration implements ConfigurationInterface
         }
 
         if (isset($options['plugins'])) {
+            if (is_string($options['plugins'])) {
+                $plugins = preg_split('/[\\s,]+/', trim($options['plugins']), -1, PREG_SPLIT_NO_EMPTY);
+
+                if (false === $plugins) {
+                    throw new InvalidConfigurationException('The "options.plugins" value could not be normalized.');
+                }
+
+                $options['plugins'] = $plugins;
+            }
+
             if (!is_array($options['plugins'])) {
                 throw new InvalidConfigurationException('The "options.plugins" value must be a list of plugin names.');
             }

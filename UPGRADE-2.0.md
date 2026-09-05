@@ -8,5 +8,6 @@
 - Remove legacy plugins (`print`, `paste`, `contextmenu`, `template`, `fullpage`, and `spellchecker`) and `theme: modern`.
 - Replace Symfony Templating calls with `tinymce_configuration()` and `tinymce_asset_url()`.
 - Register `FM\\TinyMCEBundle\\Composer\\TinyMCEAssetInstaller::copy` in the root application's `post-install-cmd` and `post-update-cmd` Composer scripts.
+- Configure the FMElfinder instance used by `file_picker.type: fm_elfinder` with `editor: callback` and `callback_function: FMTinyMCE.receiveFiles`.
 
 The bundle remains MIT. TinyMCE Community Edition is GPL-2.0-or-later and always receives `license_key: gpl`.

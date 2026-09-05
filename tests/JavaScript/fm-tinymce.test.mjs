@@ -73,7 +73,7 @@ test('synchronizes an inline editor into its hidden textarea', async () => {
   initializations[0].setup(editor);
 
   handlers.init();
-  handlers['change input']();
+  handlers['change input SetContent Undo Redo']();
 
   assert.equal(editor.content, '<p>initial</p>');
   assert.equal(dom.window.document.getElementById('body').value, '<p>updated</p>');
@@ -83,16 +83,24 @@ test('synchronizes an inline editor into its hidden textarea', async () => {
   assert.equal(dom.window.document.getElementById('body').value, '<p>updated</p>');
 });
 
-test('adapts the controlled FMElfinder URL into a TinyMCE callback', async () => {
+test('adapts the FMElfinder callback editor response into a TinyMCE callback', async () => {
   const { dom, initializations } = boot('<textarea id="body" data-fm-tinymce-options=\'{"fm_elfinder_url":"/elfinder"}\' data-fm-tinymce-script="/tinymce.js"></textarea>');
   dom.window.FMTinyMCE.loadScript = async () => {};
   dom.window.open = () => null;
   await new Promise((resolve) => setTimeout(resolve, 0));
   let selectedUrl = null;
 
-  initializations[0].file_picker_callback((url) => { selectedUrl = url; });
-  dom.window.FMTinyMCEFilePickerCallback('/uploads/image.png');
+  let selectedMetadata = null;
+  initializations[0].file_picker_callback((url, metadata) => {
+    selectedUrl = url;
+    selectedMetadata = metadata;
+  }, '', { filetype: 'image' });
+  dom.window.FMTinyMCE.receiveFiles([{
+    url: '/uploads/image.png',
+    name: 'image.png',
+  }]);
 
   assert.equal(selectedUrl, '/uploads/image.png');
+  assert.equal(selectedMetadata.alt, 'image.png');
   assert.equal(initializations[0].fm_elfinder_url, undefined);
 });
