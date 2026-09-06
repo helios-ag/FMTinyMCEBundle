@@ -26,6 +26,19 @@ The bundle is MIT. TinyMCE Community Edition remains GPL-2.0-or-later; use it on
 composer require helios-ag/fm-tinymce-bundle
 ```
 
+This bundle does not currently provide a Symfony Flex recipe. Register it in `config/bundles.php`:
+
+```php
+<?php
+
+use FM\TinyMCEBundle\FMTinyMCEBundle;
+
+return [
+    // ...
+    FMTinyMCEBundle::class => ['all' => true],
+];
+```
+
 Register the bundle installer in the consuming application's root `composer.json`; Composer does not execute scripts supplied by dependencies:
 
 ```json
@@ -41,6 +54,33 @@ Run `composer install` or `composer update` after registering it. The installer 
 
 ## Configure
 
+Create `config/packages/fm_tinymce.yaml`. The smallest valid configuration uses the built-in TinyMCE 8 defaults:
+
+```yaml
+fm_tinymce:
+  instances:
+    default: {}
+```
+
+The bundle automatically registers `@FMTinyMCE/Form/tinymce_widget.html.twig` as a Twig form theme. Do not add it to `framework.form_themes` yourself.
+
+### Default values
+
+The `options` value is a single free-form map. Its default `language`, `plugins`, and `toolbar` entries are used only when the entire `options` key is omitted. If you provide `options`, it replaces that default map; include every TinyMCE option the instance needs.
+
+| Option | Default |
+|---|---|
+| `assets.base_path` | `assets/tinymce` |
+| `assets.script_path` | `assets/tinymce/tinymce.min.js` |
+| `instances.<name>.enabled` | `true` |
+| `instances.<name>.inline` | `false` |
+| `instances.<name>.options.language` | `en` |
+| `instances.<name>.options.plugins` | `advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table` |
+| `instances.<name>.options.toolbar` | `undo redo \| blocks \| bold italic \| link image` |
+| `instances.<name>.file_picker.type` | `null` |
+
+Every configuration must contain an instance named `default`. Add other named instances when a form needs different TinyMCE options:
+
 ```yaml
 fm_tinymce:
   instances:
@@ -55,6 +95,22 @@ fm_tinymce:
         route_parameters: { instance: tinymce }
       options: { }
 ```
+
+### Use in a form
+
+Select an instance with the `instance` form option:
+
+```php
+use FM\TinyMCEBundle\Form\Type\TinyMCEType;
+
+$builder->add('body', TinyMCEType::class, [
+    'instance' => 'default',
+]);
+```
+
+Set the form option `enabled: false` to render a plain textarea. Configure `inline: true` on an instance to use TinyMCE inline mode.
+
+### Use with FMElfinderBundle
 
 Configure the matching FMElfinder instance to use its callback editor. The callback name is fixed and must match the runtime API below:
 
@@ -72,13 +128,7 @@ fm_elfinder:
             url: /uploads
 ```
 
-```php
-use FM\TinyMCEBundle\Form\Type\TinyMCEType;
-
-$builder->add('body', TinyMCEType::class, ['instance' => 'elfinder']);
-```
-
-Use `enabled: false` for a plain textarea and `inline: true` on an instance for an inline editor.
+Use the `elfinder` instance in the form with `'instance' => 'elfinder'`.
 
 ## Development
 
