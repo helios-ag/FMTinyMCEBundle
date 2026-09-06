@@ -16,7 +16,7 @@ jobs:
       SYMFONY_REQUIRE: '8.1.*'
     steps:
       - uses: actions/checkout@v7.0.1
-      - uses: shivammathur/setup-php@2.37.2
+      - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
         with:
           php-version: '8.4'
           extensions: mbstring, intl
@@ -28,7 +28,7 @@ jobs:
       - run: vendor/bin/phpunit --coverage-clover build/coverage.xml
       - name: Upload coverage to Codacy
         if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
-        uses: codacy/codacy-coverage-reporter-action@v1.3.0
+        uses: codacy/codacy-coverage-reporter-action@89d6c85cfafaec52c72b6c5e8b2878d33104c699 # v1.3.0
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
           coverage-reports: build/coverage.xml

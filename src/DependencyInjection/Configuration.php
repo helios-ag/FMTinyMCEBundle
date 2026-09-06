@@ -102,7 +102,7 @@ final class Configuration implements ConfigurationInterface
         }
 
         if (isset($options['plugins'])) {
-            if (is_string($options['plugins'])) {
+            if (true === is_string($options['plugins'])) {
                 $plugins = preg_split('/[\\s,]+/', trim($options['plugins']), -1, PREG_SPLIT_NO_EMPTY);
 
                 if (false === $plugins) {
