@@ -66,6 +66,8 @@ The bundle automatically registers `@FMTinyMCE/Form/tinymce_widget.html.twig` as
 
 ### Default values
 
+The `options` value is a single free-form map. Its default `language`, `plugins`, and `toolbar` entries are used only when the entire `options` key is omitted. If you provide `options`, it replaces that default map; include every TinyMCE option the instance needs.
+
 | Option | Default |
 |---|---|
 | `assets.base_path` | `assets/tinymce` |
