@@ -2,6 +2,16 @@
 
 MIT-licensed Symfony 7.4/8 bundle for self-hosted [TinyMCE 8 Community Edition](https://www.tiny.cloud/docs/tinymce/latest/).
 
+### Code Quality Assurance
+
+| Tests | Coverage | License | Version |
+|---|---|---|---|
+| [![Tests - Linux](https://github.com/helios-ag/FMTinyMCEBundle/actions/workflows/test.yaml/badge.svg)](https://github.com/helios-ag/FMTinyMCEBundle/actions/workflows/test.yaml) | [![Codacy Coverage](https://app.codacy.com/project/badge/Coverage/04a3e972e6af4351b83ccf402b4cebf1)](https://app.codacy.com/gh/helios-ag/FMTinyMCEBundle/dashboard) | [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE) | [![Latest Stable Version](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/v/stable.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle) |
+
+| Downloads |
+|---|
+| [![Total Downloads](https://poser.pugx.org/helios-ag/fm-tinymce-bundle/downloads.svg)](https://packagist.org/packages/helios-ag/fm-tinymce-bundle) |
+
 ## Requirements
 
 - PHP 8.2 or newer
